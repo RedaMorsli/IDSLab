@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdw6luqob0462"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_5gv4n"]
+[ext_resource type="Script" uid="uid://biu0t6qv34aa1" path="res://pages/setup/setup_step.gd" id="2_5gv4n"]
+
+[node name="SetupStep" type="PanelContainer"]
+theme = ExtResource("1_5gv4n")
+script = ExtResource("2_5gv4n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CheckBox" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 0
+theme_type_variation = &"SetupCheckBoxUnchecked"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"PrimaryText"
+text = "Title"
+
+[node name="Details" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Description" type="Label" parent="HBoxContainer/VBoxContainer/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SecondaryText"
+text = "Description"
+autowrap_mode = 3
+
+[node name="PrimaryButton" type="Button" parent="HBoxContainer/VBoxContainer/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton"
+text = "Action"

@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://blkbxs6x5cb7"]
+
+[ext_resource type="Script" uid="uid://7lf1kisowmqd" path="res://pages/repositories/file_container.gd" id="1_13bsa"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_w5036"]
+[ext_resource type="Texture2D" uid="uid://dkw11hvjok2ee" path="res://assets/icons/file-dashed-fill.png" id="4_clvtt"]
+
+[sub_resource type="FoldableGroup" id="FoldableGroup_3omxt"]
+resource_local_to_scene = false
+allow_folding_all = true
+
+[node name="EventFileContainer" type="FoldableContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_w5036")
+title = "My Files"
+foldable_group = SubResource("FoldableGroup_3omxt")
+script = ExtResource("1_13bsa")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="EmptyControl" type="VBoxContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/EmptyControl"]
+modulate = Color(0.12156863, 0.16078432, 0.21568628, 0.6)
+layout_mode = 2
+texture = ExtResource("4_clvtt")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/EmptyControl"]
+layout_mode = 2
+theme_type_variation = &"SecondaryText"
+text = "There is no file yet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FilesRoot" type="VBoxContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="VBoxContainer" parent="Control/FilesRoot"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="Control/FilesRoot/Header"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CheckBox" type="CheckBox" parent="Control/FilesRoot/Header/HBox"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/FilesRoot/Header/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryTextBold"
+text = "Name"
+
+[node name="Label2" type="Label" parent="Control/FilesRoot/Header/HBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryTextBold"
+text = "Last Modified"
+
+[node name="Label3" type="Label" parent="Control/FilesRoot/Header/HBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryTextBold"
+text = "Size"
+
+[node name="HSeparator" type="HSeparator" parent="Control/FilesRoot/Header"]
+layout_mode = 2
+
+[node name="FilesRoot" type="ScrollContainer" parent="Control/FilesRoot"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FilesContainer" type="VBoxContainer" parent="Control/FilesRoot/FilesRoot"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8

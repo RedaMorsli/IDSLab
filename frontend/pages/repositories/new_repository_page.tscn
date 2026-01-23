@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceb6psy3eydly"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_fkcuh"]
+[ext_resource type="Script" uid="uid://g2lfh77rv5n8" path="res://pages/repositories/new_repository_page.gd" id="2_fkcuh"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="3_ctilr"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="4_qc4yb"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="5_dqxna"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="6_bqloe"]
+[ext_resource type="PackedScene" uid="uid://dularfrh3frse" path="res://components/loading/loading_spinner.tscn" id="7_gwomq"]
+
+[node name="NewDatasetPage" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fkcuh")
+script = ExtResource("2_fkcuh")
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="Center/VBox/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_ctilr")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Center/VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Dataset"
+label_settings = ExtResource("4_qc4yb")
+horizontal_alignment = 1
+
+[node name="Name" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Center/VBox/Name"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Dataset name"
+label_settings = ExtResource("5_dqxna")
+
+[node name="RepositoryNameEdit" type="LineEdit" parent="Center/VBox/Name"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g. MyDataset"
+
+[node name="ConfirmButton" parent="Center/VBox" instance=ExtResource("6_bqloe")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Dataset"
+
+[node name="Spinner" parent="Center/VBox" instance=ExtResource("7_gwomq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+stretch_mode = 3
+
+[connection signal="button_up" from="Center/VBox/HBoxContainer/BackButton" to="." method="emit_signal" binds= ["request_pop_back"]]
+[connection signal="pressed" from="Center/VBox/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Center/VBox/ConfirmButton" to="." method="_on_confirm_button_pressed"]

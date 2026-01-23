@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dam6f7g6tuinn"]
+
+[node name="EventFilterCheckbox" type="CheckBox"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+offset_right = 76.0
+offset_bottom = 28.0
+size_flags_horizontal = 3
+text = "test"

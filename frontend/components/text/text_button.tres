@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://wyldnxevo8dl"]
+
+[ext_resource type="FontFile" uid="uid://bsrlnjeb3vpyw" path="res://assets/fonts/Inter_18pt-Medium.ttf" id="1_nctkn"]
+
+[resource]
+font = ExtResource("1_nctkn")
+font_color = Color(0.121569, 0.160784, 0.215686, 1)

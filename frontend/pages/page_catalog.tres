@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="PageCatalog" load_steps=17 format=3 uid="uid://exsj3b2yq0gy"]
+
+[ext_resource type="PackedScene" uid="uid://sv3wyahxbp23" path="res://pages/clusters/clusters_page.tscn" id="1_7ngkn"]
+[ext_resource type="PackedScene" uid="uid://bw4ya1ytijxyl" path="res://pages/apps/add_app_page.tscn" id="1_13oag"]
+[ext_resource type="PackedScene" uid="uid://c6m40dkcth4lr" path="res://pages/apps/apps_page.tscn" id="2_0yhrm"]
+[ext_resource type="PackedScene" uid="uid://d1q2e47g20k7l" path="res://pages/apps/add_web_app_page.tscn" id="2_qqjv3"]
+[ext_resource type="PackedScene" uid="uid://blqlsik61fbfj" path="res://pages/clusters/add_cluster_page.tscn" id="2_sfpt8"]
+[ext_resource type="PackedScene" uid="uid://ce55s7i2y5cnj" path="res://pages/apps/app_detail_page.tscn" id="2_um0ie"]
+[ext_resource type="Script" uid="uid://dwdivmde761jt" path="res://pages/page_catalog.gd" id="3_13oag"]
+[ext_resource type="PackedScene" uid="uid://bsuwh316k2p0w" path="res://pages/attacks/web/web_attacks_page.tscn" id="6_qqjv3"]
+[ext_resource type="PackedScene" uid="uid://unh7rtfr621q" path="res://pages/clusters/new_conatiner_cluster_page.tscn" id="7_ncv0x"]
+[ext_resource type="PackedScene" uid="uid://ceb6psy3eydly" path="res://pages/repositories/new_repository_page.tscn" id="8_0oy5y"]
+[ext_resource type="PackedScene" uid="uid://bf7nr0d2ppfo7" path="res://pages/events/new_collector_page.tscn" id="8_qhdcl"]
+[ext_resource type="PackedScene" uid="uid://dcvl1i0li0br0" path="res://pages/clusters/new_vm_cluster_page.tscn" id="8_sfpt8"]
+[ext_resource type="PackedScene" uid="uid://dfuvtoj0u8iuf" path="res://pages/datasets/dataset_editor.tscn" id="9_0oy5y"]
+[ext_resource type="PackedScene" uid="uid://dfh6ko7xwxtru" path="res://pages/events/event_filter_edit_page.tscn" id="11_050kk"]
+[ext_resource type="PackedScene" uid="uid://crkdouin3lgee" path="res://pages/repositories/repositories_page.tscn" id="13_62x81"]
+[ext_resource type="PackedScene" uid="uid://dr5c6ng5fw3v5" path="res://pages/repositories/repository_page.tscn" id="14_nvr1e"]
+
+[resource]
+script = ExtResource("3_13oag")
+ClustersPage = ExtResource("1_7ngkn")
+AddClusterPage = ExtResource("2_sfpt8")
+NewVMClusterPage = ExtResource("8_sfpt8")
+NewContainerClusterPage = ExtResource("7_ncv0x")
+AppsPage = ExtResource("2_0yhrm")
+AddAppPage = ExtResource("1_13oag")
+AppDetailPage = ExtResource("2_um0ie")
+AddWebAppPage = ExtResource("2_qqjv3")
+DosPage = ExtResource("6_qqjv3")
+RepositoriesPage = ExtResource("13_62x81")
+CreateRepositoriesPage = ExtResource("8_0oy5y")
+RepositoryPage = ExtResource("14_nvr1e")
+EventFilterEditPage = ExtResource("11_050kk")
+CreateEventCollectorPage = ExtResource("8_qhdcl")
+DatasetEditorPage = ExtResource("9_0oy5y")
+metadata/_custom_type_script = "uid://dwdivmde761jt"

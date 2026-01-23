@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsdiv1v1iflbs"]
+
+[ext_resource type="Theme" uid="uid://rweb70a0ack2" path="res://assets/themes/primary_button_light.tres" id="1_b6wrf"]
+
+[node name="PrimaryButton" type="Button"]
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_b6wrf")
+text = "Button"

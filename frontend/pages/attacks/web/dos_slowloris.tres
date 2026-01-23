@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WebAttackConfig" load_steps=5 format=3 uid="uid://bcs7hng5a580r"]
+
+[ext_resource type="Texture2D" uid="uid://bw75ggt0emku2" path="res://assets/icons/file-py.png" id="1_grjw0"]
+[ext_resource type="Script" uid="uid://bua6w7mqvlmr0" path="res://pages/attacks/web_attack_config.gd" id="1_tykio"]
+[ext_resource type="Script" uid="uid://ckjyrwawhdehr" path="res://components/misc/parameter.gd" id="2_grjw0"]
+
+[sub_resource type="Resource" id="Resource_grjw0"]
+script = ExtResource("2_grjw0")
+param_name = "Sockets"
+attr = "sockets"
+description = "Number of sockets to use in the test"
+default_value = [150]
+metadata/_custom_type_script = "uid://ckjyrwawhdehr"
+
+[resource]
+script = ExtResource("1_tykio")
+attack_name = "DoS Slowloris"
+server_command = "dos_slowloris"
+params = Array[ExtResource("2_grjw0")]([SubResource("Resource_grjw0")])
+icon = ExtResource("1_grjw0")
+metadata/_custom_type_script = "uid://bua6w7mqvlmr0"

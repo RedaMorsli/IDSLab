@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyvu1mx2yxitf"]
+
+[ext_resource type="Script" uid="uid://bwvyuvlkgi2sd" path="res://pages/datasets/nodes/feature_extraction_node.gd" id="1_2cw4k"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_v44f8"]
+
+[node name="FeatureExtractionNode" type="GraphNode"]
+custom_minimum_size = Vector2(256, 0)
+offset_right = 9.0
+offset_bottom = 52.0
+theme = ExtResource("1_v44f8")
+resizable = true
+title = "Feature Extraction"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(0.121569, 0.160784, 0.215686, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0.121569, 0.160784, 0.215686, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_2cw4k")
+features = Array[String](["timestamp", "process_name", "container_id", "pod_name", "arg_len", "arg_sockfd", "arg_addrlen", "args_num", "return_value", "time_since_prev_global_s", "rc1_container", "rc5_container", "rm5_len_containe"])
+node_name = "dataset_feature_extraction_node"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PrimaryText"
+text = "Features"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="FeatureContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2

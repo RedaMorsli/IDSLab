@@ -1,0 +1,30 @@
+env:
+ - name: AWS_ACCESS_KEY_ID
+   value: "admin"
+ - name: AWS_SECRET_ACCESS_KEY
+   value: "DWyaik698s"
+
+extraPorts:
+  - port: 8888
+    containerPort: 8888
+    protocol: TCP
+    name: tcp
+
+config:
+  inputs: |
+    [INPUT]
+        name http
+        listen 0.0.0.0
+        port 8888
+
+  filters: ""
+
+  outputs: |
+    [OUTPUT]
+        Name     s3
+        Match    *
+        bucket   __BUCKET__
+        total_file_size 100M
+        upload_timeout 1m
+        endpoint http://minio:9000
+        s3_key_format  /events/events_$UUID.jsonl

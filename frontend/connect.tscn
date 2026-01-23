@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://bupx4raua7kg3"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_1lhig"]
+[ext_resource type="Script" uid="uid://c45nrvlhymkvm" path="res://connect.gd" id="1_eum3r"]
+[ext_resource type="PackedScene" uid="uid://dojg677etj6vr" path="res://main.tscn" id="2_af8xb"]
+[ext_resource type="Texture2D" uid="uid://b6kaagq0gn0py" path="res://assets/icons/logo.png" id="2_eum3r"]
+[ext_resource type="FontFile" uid="uid://1bx80f2g2hnt" path="res://assets/fonts/Inter_18pt-Bold.ttf" id="3_sg5nm"]
+[ext_resource type="LabelSettings" uid="uid://b0wioq8xibooy" path="res://components/text/text_heading_xl.tres" id="4_af8xb"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="5_3yigx"]
+[ext_resource type="PackedScene" uid="uid://dularfrh3frse" path="res://components/loading/loading_spinner.tscn" id="7_sg5nm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyvdl"]
+bg_color = Color(0.972549, 0.980392, 0.988235, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_8k8y6"]
+font = ExtResource("3_sg5nm")
+font_size = 64
+font_color = Color(0.121569, 0.160784, 0.215686, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_af8xb"]
+font_color = Color(0.937255, 0.266667, 0.266667, 1)
+
+[node name="Connect" type="CanvasLayer"]
+script = ExtResource("1_eum3r")
+mainScene = ExtResource("2_af8xb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.160784, 0.215686, 1)
+
+[node name="Container" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1lhig")
+
+[node name="Control" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyvdl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_eum3r")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Container/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "IDSLab"
+label_settings = SubResource("LabelSettings_8k8y6")
+
+[node name="Label" type="Label" parent="Container/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Connect to a server"
+label_settings = ExtResource("4_af8xb")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Container/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Container/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="UrlEdit" type="LineEdit" parent="Container/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "ws://localhost:8765"
+placeholder_text = "Server URL"
+
+[node name="ErrorLabel" type="Label" parent="Container/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Error connecting to the server"
+label_settings = SubResource("LabelSettings_af8xb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+alignment = 1
+
+[node name="ConnectButton" parent="Container/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("5_3yigx")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Connect"
+
+[node name="LoadingSpinner" parent="Container/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("7_sg5nm")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="Container/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]

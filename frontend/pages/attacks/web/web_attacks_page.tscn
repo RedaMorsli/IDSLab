@@ -1,0 +1,188 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsuwh316k2p0w"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_suh6c"]
+[ext_resource type="Script" uid="uid://d4imy6nsxkb4o" path="res://pages/attacks/web/web_attacks_page.gd" id="2_0n5xs"]
+[ext_resource type="Resource" uid="uid://bcs7hng5a580r" path="res://pages/attacks/web/dos_slowloris.tres" id="3_0n5xs"]
+[ext_resource type="Script" uid="uid://bua6w7mqvlmr0" path="res://pages/attacks/web_attack_config.gd" id="3_fmbtj"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="3_rn8qi"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="4_fmbtj"]
+[ext_resource type="PackedScene" uid="uid://bp6vgmb2miiwp" path="res://components/misc/parameter_ui.tscn" id="4_rn8qi"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="6_5er8k"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="7_fmbtj"]
+[ext_resource type="LabelSettings" uid="uid://wyldnxevo8dl" path="res://components/text/text_button.tres" id="7_mdwsq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l1dd"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.101961)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[node name="WebAttacksPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_suh6c")
+script = ExtResource("2_0n5xs")
+web_attacks = Array[ExtResource("3_fmbtj")]([ExtResource("3_0n5xs")])
+ParamUIScene = ExtResource("4_rn8qi")
+title = "Web Attacks"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_rn8qi")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simulate a web attack"
+label_settings = ExtResource("4_fmbtj")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+
+[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryText"
+text = "Target web application"
+
+[node name="TargetOptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryText"
+text = "Attack"
+
+[node name="AttackOptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Parameters"
+label_settings = ExtResource("7_fmbtj")
+
+[node name="ParameterContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryText"
+text = "Timeout (seconds)"
+
+[node name="TimeoutSpinBox" type="SpinBox" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 5.0
+max_value = 3600.0
+value = 30.0
+allow_greater = true
+alignment = 1
+
+[node name="Control2" type="Control" parent="HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LaunchAttackButton" parent="HBoxContainer/VBoxContainer" instance=ExtResource("6_5er8k")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "Logs"
+label_settings = ExtResource("7_mdwsq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5l1dd")
+
+[node name="OutputLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer2/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/LaunchAttackButton" to="." method="_on_launch_attack_button_pressed"]

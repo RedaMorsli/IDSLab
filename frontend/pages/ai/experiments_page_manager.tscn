@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce8jp7epkx3f2"]
+
+[ext_resource type="Script" uid="uid://b1u4un16xo1fl" path="res://pages/page_manager.gd" id="1_ers1x"]
+[ext_resource type="Resource" uid="uid://exsj3b2yq0gy" path="res://pages/page_catalog.tres" id="2_hf1bf"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="3_g7bf7"]
+[ext_resource type="PackedScene" uid="uid://gkn6ju7hqlrv" path="res://pages/breadcrumb.tscn" id="4_4anqt"]
+
+[node name="ExperimentsPageManager" type="Control" node_paths=PackedStringArray("root_container", "breadcrumb")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ers1x")
+nav_name = "experiments"
+pages_catalog = ExtResource("2_hf1bf")
+root_container = NodePath("Margin/VBox/RootContainer")
+breadcrumb = NodePath("Margin/VBox/Breadcrumb")
+metadata/_custom_type_script = "uid://b1u4un16xo1fl"
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_g7bf7")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Breadcrumb" parent="Margin/VBox" instance=ExtResource("4_4anqt")]
+layout_mode = 2
+
+[node name="RootContainer" type="Control" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ev5lyulw41bl"]
+
+[ext_resource type="Script" uid="uid://brjccp120upiq" path="res://autoloads/cluster_manager.gd" id="1_f8bhe"]
+
+[node name="ClusterManager" type="Node"]
+script = ExtResource("1_f8bhe")

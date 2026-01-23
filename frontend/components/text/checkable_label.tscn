@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0b8gnjln5qs5"]
+
+[ext_resource type="Texture2D" uid="uid://flc1byxvavj7" path="res://assets/icons/check.png" id="1_vn56s"]
+[ext_resource type="Script" uid="uid://cqy5ge663oiqv" path="res://components/text/checkable_label.gd" id="2_vn56s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vn56s"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.145098, 0.388235, 0.921569, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4mhu"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.898039, 0.905882, 0.921569, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="CheckableLabel" type="Button"]
+offset_left = 16.0
+offset_right = 84.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.972549, 0.980392, 0.988235, 1)
+theme_override_colors/font_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.972549, 0.980392, 0.988235, 1)
+theme_override_colors/icon_pressed_color = Color(0.972549, 0.980392, 0.988235, 1)
+theme_override_colors/font_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.972549, 0.980392, 0.988235, 1)
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_vn56s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y4mhu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vn56s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4mhu")
+toggle_mode = true
+text = "label"
+icon = ExtResource("1_vn56s")
+script = ExtResource("2_vn56s")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

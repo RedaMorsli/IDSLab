@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5g52gmce6lvl"]
+
+[ext_resource type="Script" uid="uid://cpbyw3phkh167" path="res://pages/breadcrumb_item.gd" id="1_k882r"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="1_skp04"]
+[ext_resource type="LabelSettings" uid="uid://b0wioq8xibooy" path="res://components/text/text_heading_xl.tres" id="3_k882r"]
+
+[node name="BreadcrumbItem" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+theme_override_constants/separation = 8
+script = ExtResource("1_k882r")
+
+[node name="ArrowTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.392157, 0.454902, 0.545098, 1)
+layout_mode = 2
+texture = ExtResource("1_skp04")
+stretch_mode = 3
+flip_h = true
+
+[node name="ItemTitle" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+text = "breadcrumb_root"
+label_settings = ExtResource("3_k882r")
+
+[connection signal="gui_input" from="ItemTitle" to="." method="_on_gui_input"]

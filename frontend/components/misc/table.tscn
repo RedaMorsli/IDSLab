@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://7h3gmgs0vprj"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_5yjs1"]
+[ext_resource type="LabelSettings" uid="uid://b0wioq8xibooy" path="res://components/text/text_heading_xl.tres" id="2_nrd0i"]
+
+[node name="Table" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme = ExtResource("1_5yjs1")
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "test"
+label_settings = ExtResource("2_nrd0i")
+
+[node name="Label4" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "test"
+label_settings = ExtResource("2_nrd0i")
+
+[node name="Label5" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "test"
+label_settings = ExtResource("2_nrd0i")

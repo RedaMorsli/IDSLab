@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0yeco7ojrfyc"]
+
+[ext_resource type="Script" uid="uid://d1rbb6ydwfum1" path="res://pages/clusters/port_interval_row.gd" id="1_w8ewk"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="1_wxtlw"]
+
+[node name="PortInterval" type="HBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+theme_override_constants/separation = 8
+script = ExtResource("1_w8ewk")
+
+[node name="PortStart" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "99999"
+label_settings = ExtResource("1_wxtlw")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "-"
+label_settings = ExtResource("1_wxtlw")
+
+[node name="PortEnd" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "99999"
+label_settings = ExtResource("1_wxtlw")

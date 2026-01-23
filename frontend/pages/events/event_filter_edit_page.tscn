@@ -1,0 +1,308 @@
+[gd_scene load_steps=19 format=3 uid="uid://dfh6ko7xwxtru"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_ovhd2"]
+[ext_resource type="Script" uid="uid://6j6eadkkcfnv" path="res://pages/events/event_filter_edit_page.gd" id="2_fn0e5"]
+[ext_resource type="StyleBox" uid="uid://dtbmgbyvxv3cm" path="res://assets/styles/card_normal.tres" id="4_fn0e5"]
+[ext_resource type="LabelSettings" uid="uid://wyldnxevo8dl" path="res://components/text/text_button.tres" id="5_62glo"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="5_fn0e5"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="5_kb0bt"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="6_62glo"]
+[ext_resource type="PackedScene" uid="uid://cp1t62qrn47xp" path="res://components/card_row/card_row.tscn" id="8_kb0bt"]
+[ext_resource type="PackedScene" uid="uid://dam6f7g6tuinn" path="res://pages/events/event_filter_checkbox.tscn" id="9_62glo"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="10_0agh3"]
+[ext_resource type="Texture2D" uid="uid://s5bagy62m4wc" path="res://assets/icons/network.png" id="10_14rgc"]
+[ext_resource type="PackedScene" uid="uid://dbptocg4dbfov" path="res://components/buttons/toggle_button_with_count.tscn" id="11_gio04"]
+[ext_resource type="Texture2D" uid="uid://cps3k6ulrvl3e" path="res://assets/icons/magnifying-glass.png" id="12_vws1t"]
+[ext_resource type="Texture2D" uid="uid://dpgrhtu5n6d3t" path="res://assets/icons/selection-all.png" id="13_27pog"]
+[ext_resource type="Texture2D" uid="uid://cr3fafl56sms3" path="res://assets/icons/terminal.png" id="13_u1bmr"]
+[ext_resource type="Texture2D" uid="uid://rcmvbax8ri8j" path="res://assets/icons/selection-slash.png" id="14_51myb"]
+[ext_resource type="Texture2D" uid="uid://cflghu2rnc1d" path="res://assets/icons/shield.png" id="14_n3def"]
+[ext_resource type="Texture2D" uid="uid://82mma7dxusuu" path="res://assets/icons/cpu.png" id="15_n3def"]
+
+[node name="EventFilterEditPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_ovhd2")
+script = ExtResource("2_fn0e5")
+CardRowScene = ExtResource("8_kb0bt")
+EventFilterCheckbox = ExtResource("9_62glo")
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Filter Name"
+label_settings = ExtResource("5_fn0e5")
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Event-based"
+label_settings = ExtResource("10_0agh3")
+horizontal_alignment = 1
+
+[node name="NetworkButton" parent="HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("11_gio04")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Network"
+icon = ExtResource("10_14rgc")
+button_pressed = true
+
+[node name="SyscallButton" parent="HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("11_gio04")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Syscalls"
+icon = ExtResource("13_u1bmr")
+
+[node name="SecurityButton" parent="HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("11_gio04")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Security"
+icon = ExtResource("14_n3def")
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Metric-based"
+label_settings = ExtResource("10_0agh3")
+horizontal_alignment = 1
+
+[node name="ContainerButton" parent="HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("11_gio04")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Resource"
+icon = ExtResource("15_n3def")
+
+[node name="Root" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Root"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Events" type="VBoxContainer" parent="HBoxContainer/Root/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Events"]
+layout_mode = 2
+text = "Events & Metrics"
+label_settings = ExtResource("5_fn0e5")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Events"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="SearchLineEdit" type="LineEdit" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Search"
+right_icon = ExtResource("12_vws1t")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SelectAllButton" type="Button" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Select All"
+icon = ExtResource("13_27pog")
+
+[node name="UnselectAllButton" type="Button" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Unselect All"
+icon = ExtResource("14_51myb")
+
+[node name="NetworkEventsPanel" type="PanelContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_fn0e5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/NetworkEventsPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventMetricContainer" type="GridContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/NetworkEventsPanel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="SyscalventsPanel" type="PanelContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_fn0e5")
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/SyscalventsPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/SyscalventsPanel/VBox"]
+layout_mode = 2
+text = "Syscall Events"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/SyscalventsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SyscallEventsContainer" type="GridContainer" parent="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/SyscalventsPanel/VBox/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Scopes" type="VBoxContainer" parent="HBoxContainer/Root/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Scopes"]
+layout_mode = 2
+text = "Scope"
+label_settings = ExtResource("5_fn0e5")
+horizontal_alignment = 1
+
+[node name="NewScope" type="PanelContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_fn0e5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer"]
+layout_mode = 2
+text = "New scope expression"
+label_settings = ExtResource("5_62glo")
+horizontal_alignment = 1
+
+[node name="FieldInput" type="HBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/FieldInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Field"
+label_settings = ExtResource("5_kb0bt")
+
+[node name="FieldOptionButton" type="OptionButton" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/FieldInput"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OperatorInput" type="HBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/OperatorInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Operator"
+label_settings = ExtResource("5_kb0bt")
+
+[node name="OperatorOptionButton" type="OptionButton" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/OperatorInput"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueInput" type="HBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/ValueInput"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Value"
+label_settings = ExtResource("5_kb0bt")
+
+[node name="ValueEdit" type="LineEdit" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/ValueInput"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddScopeButton" parent="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer" instance=ExtResource("6_62glo")]
+layout_mode = 2
+text = "Add Expression"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScopeContainer" type="VBoxContainer" parent="HBoxContainer/Root/HBoxContainer/Scopes/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[connection signal="focus_exited" from="VBoxContainer/HBoxContainer2/NameEdit" to="." method="_on_name_edit_focus_exited"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer2/NameEdit" to="." method="_on_name_edit_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/NetworkButton" to="." method="_init_network_events"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/SyscallButton" to="." method="_init_syscall_events"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/SecurityButton" to="." method="_init_security_events"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/ContainerButton" to="." method="_init_container_metrics"]
+[connection signal="pressed" from="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/HBoxContainer/SelectAllButton" to="." method="_select_all"]
+[connection signal="pressed" from="HBoxContainer/Root/HBoxContainer/Events/VBoxContainer/HBoxContainer/UnselectAllButton" to="." method="_unselect_all"]
+[connection signal="pressed" from="HBoxContainer/Root/HBoxContainer/Scopes/NewScope/VBoxContainer/AddScopeButton" to="." method="_on_add_scope_button_pressed"]

@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b0wioq8xibooy"]
+
+[ext_resource type="FontFile" uid="uid://dv13xaojmfyw3" path="res://assets/fonts/Inter_18pt-SemiBold.ttf" id="1_wsj2p"]
+
+[resource]
+font = ExtResource("1_wsj2p")
+font_size = 24
+font_color = Color(0.121569, 0.160784, 0.215686, 1)

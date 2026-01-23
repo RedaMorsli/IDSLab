@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbrwo3uq71i7p"]
+
+[ext_resource type="Theme" uid="uid://lm61ax68spj1" path="res://assets/themes/sidebar_light_theme.tres" id="1_5hroi"]
+[ext_resource type="ButtonGroup" uid="uid://dmovb3lybdkx3" path="res://components/buttons/nav_button_group.tres" id="1_m0ifq"]
+[ext_resource type="Texture2D" uid="uid://chrbg5pmc3lbm" path="res://assets/icons/graph.png" id="2_5hroi"]
+[ext_resource type="Script" uid="uid://brosg1i7mpplq" path="res://pages/clusters/clusters_page.gd" id="3_v04i4"]
+[ext_resource type="Script" uid="uid://ck2kjqu0fryn0" path="res://components/nav/nav_button.gd" id="4_v04i4"]
+
+[node name="NavButton" type="Button" groups=["NavItems"]]
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_5hroi")
+toggle_mode = true
+button_group = ExtResource("1_m0ifq")
+text = "Nav Button"
+icon = ExtResource("2_5hroi")
+alignment = 0
+expand_icon = true
+script = ExtResource("4_v04i4")
+metadata/nav_name = "clusters"
+metadata/nav_scene = ExtResource("3_v04i4")

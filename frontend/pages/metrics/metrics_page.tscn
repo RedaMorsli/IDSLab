@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://db5l0d1f21j35"]
+
+[ext_resource type="Script" uid="uid://cgkvk1s8c11eg" path="res://pages/page.gd" id="1_b1yo1"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="2_edld6"]
+[ext_resource type="Theme" uid="uid://lm61ax68spj1" path="res://assets/themes/sidebar_light_theme.tres" id="3_ishg3"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="3_yur06"]
+[ext_resource type="Script" uid="uid://ciaorlcoo02wu" path="res://components/nav/nav_bar.gd" id="4_pc3yc"]
+[ext_resource type="Texture2D" uid="uid://s5bagy62m4wc" path="res://assets/icons/network.png" id="6_k6aiu"]
+[ext_resource type="ButtonGroup" uid="uid://b6n42noe2rob1" path="res://pages/metrics/nav_btn_groupe.tres" id="6_pc3yc"]
+[ext_resource type="Script" uid="uid://ck2kjqu0fryn0" path="res://components/nav/nav_button.gd" id="7_8mc15"]
+[ext_resource type="Texture2D" uid="uid://cr3fafl56sms3" path="res://assets/icons/terminal.png" id="8_ycv7f"]
+[ext_resource type="Texture2D" uid="uid://82mma7dxusuu" path="res://assets/icons/cpu.png" id="9_0xy3f"]
+
+[node name="MetricsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b1yo1")
+title = "Metrics"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.121569, 0.160784, 0.215686, 1)
+text = "View and configure your metrics"
+label_settings = ExtResource("2_edld6")
+
+[node name="Nav" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_ishg3")
+theme_override_constants/separation = 16
+script = ExtResource("4_pc3yc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Nav"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Nav/VBoxContainer"]
+layout_mode = 2
+text = "Categories"
+label_settings = ExtResource("3_yur06")
+horizontal_alignment = 1
+
+[node name="NetNavButton" type="Button" parent="MarginContainer/VBoxContainer/Nav/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("6_pc3yc")
+text = "Network"
+icon = ExtResource("6_k6aiu")
+script = ExtResource("7_8mc15")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="NetNavButton2" type="Button" parent="MarginContainer/VBoxContainer/Nav/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("6_pc3yc")
+text = "Syscalls"
+icon = ExtResource("8_ycv7f")
+script = ExtResource("7_8mc15")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="NetNavButton3" type="Button" parent="MarginContainer/VBoxContainer/Nav/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("6_pc3yc")
+text = "Resource"
+icon = ExtResource("9_0xy3f")
+script = ExtResource("7_8mc15")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/Nav"]
+layout_mode = 2
+
+[node name="NavContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Nav"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0

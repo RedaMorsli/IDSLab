@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://v4jy0x23w636"]
+
+[ext_resource type="Script" uid="uid://c4uj65ex63gtr" path="res://pages/apps/key_value_row.gd" id="1_abmj2"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="1_falid"]
+[ext_resource type="Texture2D" uid="uid://ckdothdek10sx" path="res://assets/icons/x.png" id="3_ak31x"]
+
+[node name="KeyValueRow" type="HBoxContainer"]
+script = ExtResource("1_abmj2")
+
+[node name="KeyLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "key1"
+label_settings = ExtResource("1_falid")
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "value1"
+label_settings = ExtResource("1_falid")
+
+[node name="DeleteRowButton" type="TextureButton" parent="."]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_ak31x")
+stretch_mode = 3
+
+[connection signal="button_up" from="DeleteRowButton" to="." method="_on_delete_row_button_button_up"]

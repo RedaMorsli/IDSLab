@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://blgrja3ce3l3q"]
+
+[ext_resource type="Script" uid="uid://bwfuc2vtt7t1n" path="res://pages/attacks/attacks_page.gd" id="1_e6dsa"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="2_t37pl"]
+[ext_resource type="FontFile" uid="uid://dv13xaojmfyw3" path="res://assets/fonts/Inter_18pt-SemiBold.ttf" id="3_33wkx"]
+[ext_resource type="StyleBox" uid="uid://dcrqlfy4bcrm2" path="res://assets/styles/card_focus.tres" id="4_ot51o"]
+[ext_resource type="StyleBox" uid="uid://dhkwrkf5gjf7n" path="res://assets/styles/card_pressed.tres" id="5_h358i"]
+[ext_resource type="StyleBox" uid="uid://4pjgprclpq3l" path="res://assets/styles/card_hover.tres" id="6_1r362"]
+[ext_resource type="StyleBox" uid="uid://dtbmgbyvxv3cm" path="res://assets/styles/card_normal.tres" id="7_gstpi"]
+[ext_resource type="Texture2D" uid="uid://cgh2qb5wbolea" path="res://assets/icons/http.png" id="8_gstpi"]
+[ext_resource type="Texture2D" uid="uid://8b1j6u78sm8t" path="res://assets/icons/kubernetes.png" id="9_vji38"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33wkx"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.898039, 0.905882, 0.921569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="AttacksPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e6dsa")
+title = "Attacks"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Simulate different attacks on the running applications."
+label_settings = ExtResource("2_t37pl")
+
+[node name="PredefinedAttacks" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Attack1" type="Button" parent="VBoxContainer/PredefinedAttacks"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.156863)
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_fonts/font = ExtResource("3_33wkx")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("4_ot51o")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_33wkx")
+theme_override_styles/hover_pressed = ExtResource("5_h358i")
+theme_override_styles/hover = ExtResource("6_1r362")
+theme_override_styles/pressed = ExtResource("5_h358i")
+theme_override_styles/normal = ExtResource("7_gstpi")
+text = "Web Attacks"
+icon = ExtResource("8_gstpi")
+
+[node name="Attack2" type="Button" parent="VBoxContainer/PredefinedAttacks"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.156863)
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_fonts/font = ExtResource("3_33wkx")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("4_ot51o")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_33wkx")
+theme_override_styles/hover_pressed = ExtResource("5_h358i")
+theme_override_styles/hover = ExtResource("6_1r362")
+theme_override_styles/pressed = ExtResource("5_h358i")
+theme_override_styles/normal = ExtResource("7_gstpi")
+disabled = true
+text = "Container Attacks"
+icon = ExtResource("9_vji38")
+
+[connection signal="pressed" from="VBoxContainer/PredefinedAttacks/Attack1" to="." method="_on_attack_1_pressed"]

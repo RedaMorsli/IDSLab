@@ -1,0 +1,11 @@
+config:
+  output:
+    webhook:
+      name: "webhook"
+      contentType: "application/json"
+      host: "fluent-test-fluent-bit"
+      port: "8888"
+      protocol: http
+      timeout: 3s
+
+defaultPolicy: false

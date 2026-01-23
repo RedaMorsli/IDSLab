@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcvl1i0li0br0"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_mk3fw"]
+[ext_resource type="Script" uid="uid://dsxucjbg7gxrn" path="res://pages/clusters/new_cluster_page.gd" id="2_x0f5e"]
+[ext_resource type="PackedScene" uid="uid://b0yeco7ojrfyc" path="res://pages/clusters/port_interval_row.tscn" id="3_0cax7"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="4_3kvc4"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="5_4hywt"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="6_f752k"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="8_v3bg1"]
+
+[node name="NewClusterPage" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mk3fw")
+script = ExtResource("2_x0f5e")
+PortIntervalRowScene = ExtResource("3_0cax7")
+title = "Create Cluster"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="Center/VBox/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_3kvc4")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Center/VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create a new VM cluster"
+label_settings = ExtResource("5_4hywt")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Name" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cluster name*"
+label_settings = ExtResource("6_f752k")
+
+[node name="ClusterNameEdit" type="LineEdit" parent="Center/VBox/Name"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "e.g. experiment_testbed"
+
+[node name="Control2" type="Control" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="CreateClusterButton" parent="Center/VBox" instance=ExtResource("8_v3bg1")]
+layout_mode = 2
+text = "Create"
+
+[connection signal="button_up" from="Center/VBox/HBoxContainer/BackButton" to="." method="emit_signal" binds= ["request_pop_back"]]
+[connection signal="button_up" from="Center/VBox/CreateClusterButton" to="." method="_on_create_cluster_button_button_up"]

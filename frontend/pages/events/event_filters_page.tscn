@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://hk6yh25gbua"]
+
+[ext_resource type="Script" uid="uid://dvouq2tlsyrc4" path="res://pages/events/event_filters_page.gd" id="1_j8ox1"]
+[ext_resource type="PackedScene" uid="uid://cp1t62qrn47xp" path="res://components/card_row/card_row.tscn" id="2_b1626"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="2_j8ox1"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="3_gv6hw"]
+[ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="4_os665"]
+
+[node name="EventFiltersPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j8ox1")
+CardRowScene = ExtResource("2_b1626")
+title = "Event Filters"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create and edit event filters."
+label_settings = ExtResource("2_j8ox1")
+vertical_alignment = 1
+
+[node name="NewEventFilterButton" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_gv6hw")]
+layout_mode = 2
+text = "New Event Filter"
+icon = ExtResource("4_os665")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FilterContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewEventFilterButton" to="." method="_on_new_event_filter_button_pressed"]

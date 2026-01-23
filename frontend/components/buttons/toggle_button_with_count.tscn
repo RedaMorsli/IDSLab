@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://dbptocg4dbfov"]
+
+[ext_resource type="Texture2D" uid="uid://s5bagy62m4wc" path="res://assets/icons/network.png" id="1_6vm1j"]
+[ext_resource type="Script" uid="uid://d1ahe7nbgcj0" path="res://components/buttons/toggle_button_with_count.gd" id="1_ngts5"]
+[ext_resource type="LabelSettings" uid="uid://wyldnxevo8dl" path="res://components/text/text_button.tres" id="2_ngts5"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="4_ngts5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gio04"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcvup"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.121569, 0.160784, 0.215686, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngts5"]
+bg_color = Color(0.8784314, 0.90588236, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.121569, 0.160784, 0.215686, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ngts5"]
+resource_local_to_scene = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxhgq"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.8784314, 0.90588236, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ToggleButtonWithCount" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_gio04")
+script = ExtResource("1_ngts5")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rcvup")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ngts5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ngts5")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ngts5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="IconTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_6vm1j")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Network"
+label_settings = ExtResource("2_ngts5")
+
+[node name="CountLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_nxhgq")
+text = "0"
+label_settings = ExtResource("4_ngts5")

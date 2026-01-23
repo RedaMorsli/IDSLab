@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6m40dkcth4lr"]
+
+[ext_resource type="Script" uid="uid://djt2k1tmnaudq" path="res://pages/apps/apps_page.gd" id="1_eb3kv"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="2_eb3kv"]
+[ext_resource type="PackedScene" uid="uid://xi2jd1kqfx4a" path="res://pages/apps/web_app_row.tscn" id="3_yvu8r"]
+[ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="4_eb3kv"]
+[ext_resource type="Texture2D" uid="uid://8b1j6u78sm8t" path="res://assets/icons/kubernetes.png" id="5_qeaif"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="6_76tjm"]
+[ext_resource type="PackedScene" uid="uid://yko8ofbeg381" path="res://pages/apps/app_row.tscn" id="6_a35gq"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="6_qeaif"]
+[ext_resource type="Texture2D" uid="uid://cgh2qb5wbolea" path="res://assets/icons/http.png" id="6_yvu8r"]
+
+[node name="AppsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eb3kv")
+AppRowScene = ExtResource("6_a35gq")
+WebAppRowScene = ExtResource("3_yvu8r")
+title = "Applications"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "View all your running applications."
+label_settings = ExtResource("2_eb3kv")
+
+[node name="AddAppButton" type="MenuButton" parent="VBox/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+text = "Add application"
+icon = ExtResource("4_eb3kv")
+item_count = 2
+popup/item_0/text = "Kubernetes app"
+popup/item_0/icon = ExtResource("5_qeaif")
+popup/item_0/id = 0
+popup/item_1/text = "Web app"
+popup/item_1/icon = ExtResource("6_yvu8r")
+popup/item_1/id = 1
+
+[node name="AppTable" type="VBoxContainer" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox/AppTable"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="K8sApps" type="VBoxContainer" parent="VBox/AppTable"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBox/AppTable/K8sApps"]
+layout_mode = 2
+text = "Kubernetes apps"
+label_settings = ExtResource("6_76tjm")
+
+[node name="AppContainer" type="VBoxContainer" parent="VBox/AppTable/K8sApps"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WebApps" type="VBoxContainer" parent="VBox/AppTable"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBox/AppTable/WebApps"]
+layout_mode = 2
+text = "Web apps"
+label_settings = ExtResource("6_76tjm")
+
+[node name="WebAppContainer" type="VBoxContainer" parent="VBox/AppTable/WebApps"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EmptyLabel" type="Label" parent="VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "There is no application yet."
+label_settings = ExtResource("6_qeaif")
+horizontal_alignment = 1
+vertical_alignment = 1

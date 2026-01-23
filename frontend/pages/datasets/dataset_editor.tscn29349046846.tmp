@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfuvtoj0u8iuf"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_sac0h"]
+[ext_resource type="Script" uid="uid://dbu4m54r108mm" path="res://pages/datasets/dataset_editor.gd" id="1_wb1ph"]
+[ext_resource type="Texture2D" uid="uid://igsxqns5htyr" path="res://assets/icons/play-fill.png" id="2_wb1ph"]
+[ext_resource type="Script" uid="uid://ca5x2nxqtlgss" path="res://components/graph/graph_editor.gd" id="4_4vynk"]
+[ext_resource type="PackedScene" uid="uid://bck6t5hik3bt5" path="res://pages/datasets/nodes/input_node.tscn" id="4_h3bi0"]
+[ext_resource type="PackedScene" uid="uid://cfh51nmuk4csp" path="res://pages/datasets/nodes/output_node.tscn" id="6_5gnm8"]
+
+[node name="DatasetEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wb1ph")
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sac0h")
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Data processing pipeline"
+
+[node name="Control" type="Control" parent="VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RunButton" type="Button" parent="VBox/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+text = "Run"
+icon = ExtResource("2_wb1ph")
+
+[node name="GraphEditor" type="GraphEdit" parent="VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_4vynk")
+metadata/_custom_type_script = "uid://ca5x2nxqtlgss"
+
+[node name="InputNode" parent="VBox/GraphEditor" instance=ExtResource("4_h3bi0")]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 375.0
+offset_right = 623.0
+offset_bottom = 684.0
+position_offset = Vector2(285, 375)
+
+[node name="OutputNode" parent="VBox/GraphEditor" instance=ExtResource("6_5gnm8")]
+layout_mode = 0
+offset_left = 1240.0
+offset_top = 425.0
+offset_right = 1440.0
+offset_bottom = 557.0
+mouse_filter = 1
+position_offset = Vector2(1240, 425)
+
+[connection signal="pressed" from="VBox/HBoxContainer/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="graph_updated" from="VBox/GraphEditor" to="." method="_on_graph_editor_graph_updated"]

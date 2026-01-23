@@ -1,0 +1,160 @@
+[gd_scene load_steps=9 format=3 uid="uid://unh7rtfr621q"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_b5unr"]
+[ext_resource type="Script" uid="uid://dsxucjbg7gxrn" path="res://pages/clusters/new_cluster_page.gd" id="1_hqq0v"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="3_b5unr"]
+[ext_resource type="PackedScene" uid="uid://b0yeco7ojrfyc" path="res://pages/clusters/port_interval_row.tscn" id="3_skjbl"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="4_1m1i6"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="4_ksqbo"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="5_ksqbo"]
+[ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="6_1m1i6"]
+
+[node name="NewClusterPage" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b5unr")
+script = ExtResource("1_hqq0v")
+PortIntervalRowScene = ExtResource("3_skjbl")
+title = "Create Cluster"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="Center/VBox/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_ksqbo")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Center/VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create a new cluster"
+label_settings = ExtResource("4_1m1i6")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Name" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cluster name*"
+label_settings = ExtResource("5_ksqbo")
+
+[node name="ClusterNameEdit" type="LineEdit" parent="Center/VBox/Name"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "e.g. experiment_testbed"
+
+[node name="HSeparator" type="HSeparator" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Nodes" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Nodes"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Number of nodes"
+label_settings = ExtResource("5_ksqbo")
+
+[node name="AgentCountSpinBox" type="SpinBox" parent="Center/VBox/Nodes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+allow_greater = true
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Agents2" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Agents2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ports"
+label_settings = ExtResource("5_ksqbo")
+
+[node name="PortIntervalContainer" type="VBoxContainer" parent="Center/VBox/Agents2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PortIntervalInput" type="HBoxContainer" parent="Center/VBox/Agents2/PortIntervalContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PortStartEdit" type="LineEdit" parent="Center/VBox/Agents2/PortIntervalContainer/PortIntervalInput"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "start"
+alignment = 2
+
+[node name="Label2" type="Label" parent="Center/VBox/Agents2/PortIntervalContainer/PortIntervalInput"]
+layout_mode = 2
+text = "-"
+
+[node name="PortEndEdit" type="LineEdit" parent="Center/VBox/Agents2/PortIntervalContainer/PortIntervalInput"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+placeholder_text = "end"
+
+[node name="AddPortIntervalButton" type="TextureButton" parent="Center/VBox/Agents2/PortIntervalContainer/PortIntervalInput"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_1m1i6")
+stretch_mode = 3
+
+[node name="Control2" type="Control" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="CreateClusterButton" parent="Center/VBox" instance=ExtResource("3_b5unr")]
+layout_mode = 2
+text = "Create"
+
+[connection signal="button_up" from="Center/VBox/HBoxContainer/BackButton" to="." method="emit_signal" binds= ["request_pop_back"]]
+[connection signal="pressed" from="Center/VBox/Agents2/PortIntervalContainer/PortIntervalInput/AddPortIntervalButton" to="." method="_on_add_port_interval_button_pressed"]
+[connection signal="button_up" from="Center/VBox/CreateClusterButton" to="." method="_on_create_cluster_button_button_up"]

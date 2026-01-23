@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://xi2jd1kqfx4a"]
+
+[ext_resource type="StyleBox" uid="uid://dcrqlfy4bcrm2" path="res://assets/styles/card_focus.tres" id="1_lyko6"]
+[ext_resource type="Script" uid="uid://oukrb11c1hdv" path="res://pages/apps/web_app_row.gd" id="1_puepv"]
+[ext_resource type="StyleBox" uid="uid://dhkwrkf5gjf7n" path="res://assets/styles/card_pressed.tres" id="2_47cbq"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="2_xwvy7"]
+[ext_resource type="StyleBox" uid="uid://4pjgprclpq3l" path="res://assets/styles/card_hover.tres" id="3_nxngb"]
+[ext_resource type="StyleBox" uid="uid://dtbmgbyvxv3cm" path="res://assets/styles/card_normal.tres" id="4_hwern"]
+[ext_resource type="Texture2D" uid="uid://chwpjfmbpgi1p" path="res://assets/icons/dots-three.png" id="4_lyko6"]
+[ext_resource type="Texture2D" uid="uid://bv5vy42u6y8gh" path="res://assets/icons/trash-fill.png" id="5_47cbq"]
+
+[node name="WebAppRow" type="Button"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("4_hwern")
+theme_override_styles/pressed = ExtResource("2_47cbq")
+theme_override_styles/hover = ExtResource("3_nxngb")
+theme_override_styles/hover_pressed = ExtResource("2_47cbq")
+theme_override_styles/focus = ExtResource("1_lyko6")
+script = ExtResource("1_puepv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "App1"
+label_settings = ExtResource("2_xwvy7")
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="AddressLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.145098, 0.388235, 0.921569, 1)
+bbcode_enabled = true
+text = "address"
+vertical_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+icon = ExtResource("4_lyko6")
+item_count = 1
+popup/item_0/text = "Delete"
+popup/item_0/icon = ExtResource("5_47cbq")
+popup/item_0/id = 0
+
+[connection signal="meta_clicked" from="MarginContainer/HBoxContainer/AddressLabel" to="." method="_on_address_label_meta_clicked"]

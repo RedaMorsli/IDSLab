@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfxkf5slu5kqx"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_5p2ht"]
+[ext_resource type="PackedScene" uid="uid://dularfrh3frse" path="res://components/loading/loading_spinner.tscn" id="1_ctwk0"]
+[ext_resource type="Script" uid="uid://cmh1n7mgft7r4" path="res://components/status/request_status_item.gd" id="1_syeok"]
+[ext_resource type="Texture2D" uid="uid://dks40op11lk57" path="res://assets/icons/check-circle.png" id="3_7a6k1"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="4_7a6k1"]
+[ext_resource type="Texture2D" uid="uid://cv8actgmlgn5k" path="res://assets/icons/x-circle.png" id="4_crydw"]
+
+[node name="RequestStatusItem" type="PanelContainer"]
+offset_right = 276.0
+offset_bottom = 24.0
+mouse_filter = 1
+theme = ExtResource("1_5p2ht")
+theme_type_variation = &"StatusPanel"
+script = ExtResource("1_syeok")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="LoadingTexture" parent="HBoxContainer" instance=ExtResource("1_ctwk0")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CompleteTexture" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.392157, 0.454902, 0.545098, 1)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_7a6k1")
+
+[node name="FailTexture" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.937255, 0.266667, 0.266667, 1)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_crydw")
+
+[node name="RequestExecutionMessage" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Request status message"
+label_settings = ExtResource("4_7a6k1")

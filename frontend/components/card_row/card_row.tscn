@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cp1t62qrn47xp"]
+
+[ext_resource type="StyleBox" uid="uid://lpux707lpm5a" path="res://components/card_row/card_style_focus.tres" id="1_cdtpr"]
+[ext_resource type="StyleBox" uid="uid://dcvaabx44mple" path="res://components/card_row/card_style_pressed.tres" id="2_rk42f"]
+[ext_resource type="StyleBox" uid="uid://dfgsvjjfdfsii" path="res://components/card_row/card_style_hover.tres" id="3_mdmh7"]
+[ext_resource type="StyleBox" uid="uid://cxlhosly6cpp8" path="res://components/card_row/card_style_normal.tres" id="4_sfewi"]
+[ext_resource type="Script" uid="uid://dwca41wmm003d" path="res://components/card_row/card_row.gd" id="5_ava5e"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="6_mr87s"]
+[ext_resource type="Texture2D" uid="uid://chwpjfmbpgi1p" path="res://assets/icons/dots-three.png" id="7_w47b4"]
+
+[node name="CardRow" type="Button"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("1_cdtpr")
+theme_override_styles/hover_pressed = ExtResource("3_mdmh7")
+theme_override_styles/hover = ExtResource("3_mdmh7")
+theme_override_styles/pressed = ExtResource("2_rk42f")
+theme_override_styles/normal = ExtResource("4_sfewi")
+script = ExtResource("5_ava5e")
+metadata/_custom_type_script = "uid://dwca41wmm003d"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Title"
+label_settings = ExtResource("6_mr87s")
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+icon = ExtResource("7_w47b4")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

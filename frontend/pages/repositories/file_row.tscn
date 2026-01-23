@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://vkqit18ptkuc"]
+
+[ext_resource type="Texture2D" uid="uid://8ivex3fjbbpc" path="res://assets/icons/file-fill.png" id="1_3omxt"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_6hydc"]
+[ext_resource type="Script" uid="uid://dlwnsor8qvwjx" path="res://pages/repositories/file_row.gd" id="1_cptb6"]
+
+[node name="FileRow" type="PanelContainer"]
+theme = ExtResource("1_6hydc")
+theme_type_variation = &"FileContainer"
+script = ExtResource("1_cptb6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+texture = ExtResource("1_3omxt")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryText"
+text = "my_file.ext"
+
+[node name="LastModifiedLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryText"
+text = "Today, 11:22"
+
+[node name="SizeLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PrimaryText"
+text = "50 MiB"

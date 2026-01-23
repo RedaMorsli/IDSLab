@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://blqlsik61fbfj"]
+
+[ext_resource type="Script" uid="uid://wx7m3qouw4ve" path="res://pages/clusters/add_cluster_page.gd" id="1_t6b0t"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="2_41hnf"]
+[ext_resource type="Texture2D" uid="uid://dfpj0kokxni25" path="res://assets/icons/file-arrow-up.png" id="4_xxw6j"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="5_7xydb"]
+[ext_resource type="PackedScene" uid="uid://dularfrh3frse" path="res://components/loading/loading_spinner.tscn" id="5_ss52a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8lcp"]
+bg_color = Color(0.898039, 0.905882, 0.921569, 0.176471)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.121569, 0.160784, 0.215686, 0.321569)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="AddClusterPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t6b0t")
+title = "Add a cluster"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_41hnf")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add a cluster"
+label_settings = ExtResource("5_7xydb")
+
+[node name="InputContainer" type="MarginContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/InputContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_w8lcp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/InputContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/InputContainer/PanelContainer/VBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("4_xxw6j")
+stretch_mode = 3
+
+[node name="FileLabel" type="RichTextLabel" parent="VBoxContainer/InputContainer/PanelContainer/VBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[url]Select kubeconfig file[/url] or drag and drop here"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="LoadingContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/LoadingContainer"]
+layout_mode = 2
+text = "Processing"
+label_settings = ExtResource("5_7xydb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadingTexture" parent="VBoxContainer/LoadingContainer" instance=ExtResource("5_ss52a")]
+layout_mode = 2
+size_flags_horizontal = 4
+stretch_mode = 3
+
+[node name="ClusterFileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="meta_clicked" from="VBoxContainer/InputContainer/PanelContainer/VBoxContainer/FileLabel" to="." method="_on_file_label_meta_clicked"]
+[connection signal="file_selected" from="ClusterFileDialog" to="." method="_on_cluster_file_dialog_file_selected"]

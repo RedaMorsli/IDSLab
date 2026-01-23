@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfh51nmuk4csp"]
+
+[ext_resource type="Script" uid="uid://beh2hpydeslkc" path="res://pages/datasets/nodes/output_node.gd" id="1_tkynw"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_vwn7l"]
+
+[node name="OutputNode" type="GraphNode"]
+offset_right = 94.0
+offset_bottom = 72.0
+theme = ExtResource("1_vwn7l")
+title = "Output"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(0.121569, 0.160784, 0.215686, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(0.121569, 0.160784, 0.215686, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_tkynw")
+node_name = "OutputNode"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"PrimaryText"
+text = "Dataset"
+
+[node name="FileLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Url"
+bbcode_enabled = true
+text = "[url]myfile.csv"
+fit_content = true
+autowrap_mode = 0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Save Dataset File"
+access = 2
+use_native_dialog = true
+
+[connection signal="meta_clicked" from="FileLabel" to="." method="_on_file_label_meta_clicked"]

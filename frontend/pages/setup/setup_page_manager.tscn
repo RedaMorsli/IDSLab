@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxax7o8u3gtq7"]
+
+[ext_resource type="Script" uid="uid://b1u4un16xo1fl" path="res://pages/page_manager.gd" id="1_06ifn"]
+[ext_resource type="Resource" uid="uid://exsj3b2yq0gy" path="res://pages/page_catalog.tres" id="2_ef6qf"]
+[ext_resource type="PackedScene" uid="uid://o44xgjqs1j2i" path="res://pages/setup/setup_page.tscn" id="3_ef6qf"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="3_xt1ob"]
+[ext_resource type="PackedScene" uid="uid://gkn6ju7hqlrv" path="res://pages/breadcrumb.tscn" id="4_i6npe"]
+
+[node name="SetupPageManager" type="Control" node_paths=PackedStringArray("root_container", "breadcrumb")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06ifn")
+nav_name = "setup"
+pages_catalog = ExtResource("2_ef6qf")
+root_container = NodePath("Margin/VBox/RootContainer")
+root_page = ExtResource("3_ef6qf")
+breadcrumb = NodePath("Margin/VBox/Breadcrumb")
+metadata/_custom_type_script = "uid://b1u4un16xo1fl"
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_xt1ob")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Breadcrumb" parent="Margin/VBox" instance=ExtResource("4_i6npe")]
+visible = false
+layout_mode = 2
+
+[node name="RootContainer" type="Control" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,0 +1,155 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf7nr0d2ppfo7"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_i4g0x"]
+[ext_resource type="Script" uid="uid://vo5wlr2e41eo" path="res://pages/events/new_collector_page.gd" id="2_bqkcu"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="3_x2mr2"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="4_r6vs1"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="5_x2mr2"]
+
+[node name="NewCollectorPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i4g0x")
+script = ExtResource("2_bqkcu")
+title = "New event collector"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create an event collector"
+label_settings = ExtResource("3_x2mr2")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cluster"
+label_settings = ExtResource("4_r6vs1")
+
+[node name="ClusterOptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Filter"
+label_settings = ExtResource("4_r6vs1")
+
+[node name="FilterOptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dataset"
+label_settings = ExtResource("4_r6vs1")
+
+[node name="RepositoryOptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Autostart"
+label_settings = ExtResource("4_r6vs1")
+
+[node name="AutostartCheck" type="CheckBox" parent="CenterContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Enable"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Destroy after timeout"
+label_settings = ExtResource("4_r6vs1")
+
+[node name="TimeoutCheck" type="CheckBox" parent="CenterContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enable"
+
+[node name="Timeout" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Timeout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "Timeout"
+label_settings = ExtResource("4_r6vs1")
+
+[node name="TimeoutHour" type="SpinBox" parent="CenterContainer/VBoxContainer/Timeout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+suffix = "h"
+
+[node name="TimeoutMinute" type="SpinBox" parent="CenterContainer/VBoxContainer/Timeout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+suffix = "m"
+
+[node name="TimeoutSecond" type="SpinBox" parent="CenterContainer/VBoxContainer/Timeout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+suffix = "s"
+
+[node name="CreateCollectorButton" parent="CenterContainer/VBoxContainer" instance=ExtResource("5_x2mr2")]
+layout_mode = 2
+text = "Create"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CreateCollectorButton" to="." method="_on_create_collector_button_pressed"]

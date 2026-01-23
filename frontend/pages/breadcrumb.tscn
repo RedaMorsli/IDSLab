@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://gkn6ju7hqlrv"]
+
+[ext_resource type="PackedScene" uid="uid://c5g52gmce6lvl" path="res://pages/breadcrumb_item.tscn" id="1_4xvc8"]
+[ext_resource type="Script" uid="uid://c2uwatxhugwsa" path="res://pages/breadcrumb.gd" id="1_50b6s"]
+
+[node name="Breadcrumb" type="Control" node_paths=PackedStringArray("item_container")]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_50b6s")
+BreadcumbItemScene = ExtResource("1_4xvc8")
+item_container = NodePath("ItemContainer")
+
+[node name="ItemContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8

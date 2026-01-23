@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr5c6ng5fw3v5"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_mqu1h"]
+[ext_resource type="Script" uid="uid://cixx8ekjlhg46" path="res://pages/repositories/repository_page.gd" id="1_r8rgw"]
+[ext_resource type="PackedScene" uid="uid://blkbxs6x5cb7" path="res://pages/repositories/file_container.tscn" id="3_pd8qk"]
+
+[node name="RepositoryPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mqu1h")
+script = ExtResource("1_r8rgw")
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="Container" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="EventFileContainer" parent="Container" instance=ExtResource("3_pd8qk")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Event Files"
+foldable_group = null
+
+[node name="MetricFileContainer" parent="Container" instance=ExtResource("3_pd8qk")]
+unique_name_in_owner = true
+layout_mode = 2
+title = "Metric Files"
+foldable_group = null
+
+[connection signal="folding_changed" from="Container/EventFileContainer" to="." method="_on_file_container_folding_changed"]
+[connection signal="folding_changed" from="Container/MetricFileContainer" to="." method="_on_file_container_folding_changed"]

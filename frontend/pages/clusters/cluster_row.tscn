@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf2gegiiu5wai"]
+
+[ext_resource type="Script" uid="uid://cfoed62egbduy" path="res://pages/clusters/cluster_row.gd" id="1_irnya"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_m8nv8"]
+[ext_resource type="PackedScene" uid="uid://deo5t4os3v61o" path="res://components/text/code_text.tscn" id="3_ft77t"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="4_ft77t"]
+[ext_resource type="Texture2D" uid="uid://bv5vy42u6y8gh" path="res://assets/icons/trash-fill.png" id="4_m8nv8"]
+
+[node name="ClusterRow" type="HBoxContainer"]
+theme = ExtResource("1_m8nv8")
+theme_override_constants/separation = 32
+script = ExtResource("1_irnya")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+visible = false
+modulate = Color(0.392157, 0.454902, 0.545098, 1)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Status" parent="Control" instance=ExtResource("3_ft77t")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_right = 24.0
+offset_bottom = 14.0
+grow_vertical = 2
+text = "-"
+
+[node name="ClusterName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "k3d-cluster-test-ui"
+label_settings = ExtResource("4_ft77t")
+
+[node name="NodeCount" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "-"
+label_settings = ExtResource("4_ft77t")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="DeleteButton" type="TextureButton" parent="HBoxContainer"]
+modulate = Color(0.937255, 0.266667, 0.266667, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Delete Cluster"
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_m8nv8")
+stretch_mode = 3
+
+[connection signal="button_up" from="HBoxContainer/DeleteButton" to="." method="_on_delete_button_button_up"]

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: collector__COLLECTOR_ID__-prom-scraper
+  labels:
+    app: prom-scraper
+    purpose: prometheus-scraper
+    event-collector-id: "__COLLECTOR_ID__"
+spec:
+  # NOTE: Replace the image with a built image that contains the
+  # `prom_scrapper.py` script at `/app/prom_scrapper.py`. Example image name:
+  #   ghcr.io/<your-org>/prom-scraper:latest
+  containers:
+    - name: prom-scraper
+      image: 192.168.56.20:5000/prom-scraper:latest
+      imagePullPolicy: Always
+      env:
+        - name: PROMETHEUS_URL
+          value: "http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090"
+        - name: PROM_METRICS
+          # Example: JSON array of instant queries (must be a single-line string)
+          value: "__PROM_METRICS__"
+        - name: INTERVAL_SECONDS
+          value: "60"
+        - name: WEBHOOK_URL
+          value: "__PROM_SCRAPER_WEBHOOK_URL__"
+        - name: REQUEST_TIMEOUT
+          value: "10"
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "200m"
+          memory: "256Mi"
+      # (Optional) mount a ConfigMap or Secret here if you prefer to inject the script
+      # or credentials instead of baking them in the image.
+      volumeMounts: []
+  restartPolicy: Always

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://br58rkxhuijne"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_onafi"]
+[ext_resource type="Resource" uid="uid://exsj3b2yq0gy" path="res://pages/page_catalog.tres" id="2_i6fko"]
+[ext_resource type="Script" uid="uid://b1u4un16xo1fl" path="res://pages/page_manager.gd" id="2_kml0k"]
+[ext_resource type="PackedScene" uid="uid://sv3wyahxbp23" path="res://pages/clusters/clusters_page.tscn" id="4_2dni0"]
+[ext_resource type="PackedScene" uid="uid://gkn6ju7hqlrv" path="res://pages/breadcrumb.tscn" id="6_1ovks"]
+
+[node name="ClusterPageManager" type="Control" node_paths=PackedStringArray("root_container", "breadcrumb") groups=["NavDestinations"]]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kml0k")
+nav_name = "clusters"
+pages_catalog = ExtResource("2_i6fko")
+root_container = NodePath("Margin/VBox/RootContainer")
+root_page = ExtResource("4_2dni0")
+breadcrumb = NodePath("Margin/VBox/Breadcrumb")
+metadata/_custom_type_script = "uid://b1u4un16xo1fl"
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_onafi")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Breadcrumb" parent="Margin/VBox" instance=ExtResource("6_1ovks")]
+layout_mode = 2
+
+[node name="RootContainer" type="Control" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3

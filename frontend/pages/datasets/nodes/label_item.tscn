@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjwsww4emcedu"]
+
+[ext_resource type="Script" uid="uid://cn6k73fafn78n" path="res://pages/datasets/nodes/label_item.gd" id="1_gqly0"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_w411g"]
+[ext_resource type="Texture2D" uid="uid://bv5vy42u6y8gh" path="res://assets/icons/trash-fill.png" id="3_pk1ks"]
+
+[node name="LabelItem" type="VBoxContainer"]
+theme = ExtResource("1_w411g")
+theme_override_constants/separation = 16
+script = ExtResource("1_gqly0")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="HBoxContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "If"
+
+[node name="ColumnEdit" type="LineEdit" parent="HBoxContainer3/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Column"
+
+[node name="OperatorOption" type="OptionButton" parent="HBoxContainer3/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "="
+popup/item_0/id = 0
+popup/item_1/text = "!="
+popup/item_1/id = 1
+
+[node name="ValueEdit" type="LineEdit" parent="HBoxContainer3/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Value"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="HBoxContainer3/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Label as"
+
+[node name="LabelEdit" type="LineEdit" parent="HBoxContainer3/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Label"
+
+[node name="DeleteButton" type="Button" parent="HBoxContainer3"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+icon = ExtResource("3_pk1ks")
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer3/DeleteButton" to="." method="_on_delete_button_pressed"]

@@ -1,0 +1,66 @@
+prometheus:
+  prometheusSpec:
+      scrapeInterval: &interval "2s"
+      scrapeTimeout: *interval
+      evaluationInterval: *interval
+  serviceMonitor:
+    interval: *interval
+
+kubelet:
+  enabled: true
+  namespace: kube-system
+  serviceMonitor:
+    interval: *interval
+    resourceInterval: *interval
+    cAdvisorInterval: *interval
+    cAdvisorMetricRelabelings:
+      - sourceLabels: [__name__, interface]
+        action: drop
+        regex: 'container_network_.*;(cali|cilium|cni|lxc|nodelocaldns|tunl).*'
+      - sourceLabels: [id, pod]
+        action: drop
+        regex: '.+;'
+
+kubeApiServer:
+  serviceMonitor:
+    interval: *interval
+
+grafana:
+  serviceMonitor:
+    interval: *interval
+
+kubeStateMetrics:
+  serviceMonitor:
+    interval: *interval
+
+prometheus-node-exporter:
+  serviceMonitor:
+    interval: *interval
+  
+# kubeControllerManager:
+#   serviceMonitor:
+#     interval: *interval
+
+# coreDns:
+#   serviceMonitor:
+#     interval: *interval
+
+# kubeDns:
+#   serviceMonitor:
+#     interval: *interval
+
+# kubeEtcd:
+#   serviceMonitor:
+#     interval: *interval
+
+# kubeScheduler:
+#   serviceMonitor:
+#     interval: *interval
+# kubeProxy:
+#   serviceMonitor:
+#     interval: *interval
+
+
+# prometheusOperator:
+#   serviceMonitor:
+#     interval: *interval

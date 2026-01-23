@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://yko8ofbeg381"]
+
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="1_ek01s"]
+[ext_resource type="Script" uid="uid://dehkwy82tdyk5" path="res://pages/apps/app_row.gd" id="1_m50b5"]
+[ext_resource type="StyleBox" uid="uid://lpux707lpm5a" path="res://components/card_row/card_style_focus.tres" id="1_sjgi3"]
+[ext_resource type="StyleBox" uid="uid://dcvaabx44mple" path="res://components/card_row/card_style_pressed.tres" id="2_4g1fb"]
+[ext_resource type="Texture2D" uid="uid://os00vhjcsjtl" path="res://assets/icons/cube.png" id="3_3t73a"]
+[ext_resource type="StyleBox" uid="uid://dfgsvjjfdfsii" path="res://components/card_row/card_style_hover.tres" id="3_cgwc4"]
+[ext_resource type="StyleBox" uid="uid://cxlhosly6cpp8" path="res://components/card_row/card_style_normal.tres" id="4_o400q"]
+[ext_resource type="Texture2D" uid="uid://chwpjfmbpgi1p" path="res://assets/icons/dots-three.png" id="4_wdkmw"]
+[ext_resource type="Texture2D" uid="uid://bv5vy42u6y8gh" path="res://assets/icons/trash-fill.png" id="5_wdkmw"]
+
+[node name="AppRow" type="Button"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("1_sjgi3")
+theme_override_styles/hover_pressed = ExtResource("2_4g1fb")
+theme_override_styles/hover = ExtResource("3_cgwc4")
+theme_override_styles/pressed = ExtResource("2_4g1fb")
+theme_override_styles/normal = ExtResource("4_o400q")
+script = ExtResource("1_m50b5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "App1"
+label_settings = ExtResource("1_ek01s")
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_3t73a")
+
+[node name="ResourceLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Number of resources"
+text = "-"
+label_settings = ExtResource("1_ek01s")
+
+[node name="MenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+icon = ExtResource("4_wdkmw")
+item_count = 1
+popup/item_0/text = "Delete"
+popup/item_0/icon = ExtResource("5_wdkmw")
+popup/item_0/id = 0

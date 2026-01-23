@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy543vxtsc8ex"]
+
+[ext_resource type="PackedScene" uid="uid://cp1t62qrn47xp" path="res://components/card_row/card_row.tscn" id="1_e1p8w"]
+[ext_resource type="Script" uid="uid://bp8433peyiih4" path="res://pages/events/collector_card_row.gd" id="2_apvfa"]
+[ext_resource type="Theme" uid="uid://bttsfyln42f17" path="res://assets/themes/label_theme.tres" id="2_hq0d4"]
+[ext_resource type="LabelSettings" uid="uid://wyldnxevo8dl" path="res://components/text/text_button.tres" id="3_apvfa"]
+[ext_resource type="Texture2D" uid="uid://igsxqns5htyr" path="res://assets/icons/play-fill.png" id="4_ggbju"]
+[ext_resource type="Texture2D" uid="uid://b6r6ujy4ogkg4" path="res://assets/icons/stop-fill.png" id="5_lr5ay"]
+
+[node name="CollectorCardRow" instance=ExtResource("1_e1p8w")]
+script = ExtResource("2_apvfa")
+
+[node name="MarginContainer" parent="." index="0"]
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="MarginContainer" parent="MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/Control" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_hq0d4")
+text = "Running"
+label_settings = ExtResource("3_apvfa")
+
+[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer" index="2"]
+unique_name_in_owner = true
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+tooltip_text = "Start collector"
+mouse_default_cursor_shape = 2
+icon = ExtResource("4_ggbju")
+flat = true
+
+[node name="StopButton" type="Button" parent="MarginContainer/HBoxContainer" index="3"]
+unique_name_in_owner = true
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+tooltip_text = "Stop collector"
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_lr5ay")
+flat = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/StopButton" to="." method="_on_stop_button_pressed"]

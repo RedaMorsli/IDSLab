@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://bw4ya1ytijxyl"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_opq70"]
+[ext_resource type="Script" uid="uid://yosxwxlt7ery" path="res://pages/apps/add_app_page.gd" id="2_opq70"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="3_fre7g"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="4_opq70"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="5_opq70"]
+[ext_resource type="PackedScene" uid="uid://d0b8gnjln5qs5" path="res://components/text/checkable_label.tscn" id="6_2h3o8"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="6_sk2ct"]
+[ext_resource type="PackedScene" uid="uid://v4jy0x23w636" path="res://pages/apps/key_value_row.tscn" id="7_4gr3s"]
+[ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="7_fre7g"]
+
+[node name="AddAppPage" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_opq70")
+script = ExtResource("2_opq70")
+CheckableLabelScene = ExtResource("6_2h3o8")
+KeyValueRowScene = ExtResource("7_4gr3s")
+title = "Add Kubernetes application"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="Center/VBox/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_fre7g")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Center/VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add a Kubernetes application"
+label_settings = ExtResource("4_opq70")
+horizontal_alignment = 1
+
+[node name="Name" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Center/VBox/Name"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Application name"
+label_settings = ExtResource("5_opq70")
+
+[node name="AppNameEdit" type="LineEdit" parent="Center/VBox/Name"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g. MyApplication"
+
+[node name="Cluster" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Cluster"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Cluster"
+label_settings = ExtResource("5_opq70")
+
+[node name="ClusterOption" type="OptionButton" parent="Center/VBox/Cluster"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+allow_reselect = true
+
+[node name="Namespace" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Center/VBox/Namespace"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Namespaces"
+label_settings = ExtResource("5_opq70")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Center/VBox/Namespace"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+vertical_scroll_mode = 0
+
+[node name="NamespaceContainer" type="HBoxContainer" parent="Center/VBox/Namespace/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 2
+
+[node name="Labels" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Center/VBox/Labels"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Labels"
+label_settings = ExtResource("5_opq70")
+vertical_alignment = 1
+
+[node name="LabelContainer" type="VBoxContainer" parent="Center/VBox/Labels"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/VBox/Labels/LabelContainer"]
+layout_mode = 2
+
+[node name="LabelKeyEdit" type="LineEdit" parent="Center/VBox/Labels/LabelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Key"
+
+[node name="LabelValueEdit" type="LineEdit" parent="Center/VBox/Labels/LabelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Value"
+
+[node name="AddLabelButton" type="TextureButton" parent="Center/VBox/Labels/LabelContainer/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_fre7g")
+stretch_mode = 3
+
+[node name="AddAppButton" parent="Center/VBox" instance=ExtResource("6_sk2ct")]
+layout_mode = 2
+text = "Add"
+
+[connection signal="button_up" from="Center/VBox/HBoxContainer/BackButton" to="." method="emit_signal" binds= ["request_pop_back"]]
+[connection signal="item_selected" from="Center/VBox/Cluster/ClusterOption" to="." method="_on_cluster_option_item_selected"]
+[connection signal="button_up" from="Center/VBox/Labels/LabelContainer/HBoxContainer/AddLabelButton" to="." method="_on_add_label_button_button_up"]
+[connection signal="button_up" from="Center/VBox/AddAppButton" to="." method="_on_add_app_button_button_up"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdirpug4imgnc"]
+
+[ext_resource type="Script" uid="uid://d2dkdh2gjatou" path="res://pages/datasets/datasets_page.gd" id="1_hfhtu"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_rxhf3"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="2_k2f53"]
+[ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="4_rxhf3"]
+
+[node name="DatasetsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rxhf3")
+script = ExtResource("1_hfhtu")
+title = "Datasets"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "View all your datasets."
+label_settings = ExtResource("2_k2f53")
+
+[node name="NewDatasetButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"PrimaryButton"
+text = "New Dataset"
+icon = ExtResource("4_rxhf3")
+
+[node name="DatasetContianer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewDatasetButton" to="." method="_on_new_dataset_button_pressed"]

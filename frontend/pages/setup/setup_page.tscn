@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://o44xgjqs1j2i"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_mq4wa"]
+[ext_resource type="LabelSettings" uid="uid://b0wioq8xibooy" path="res://components/text/text_heading_xl.tres" id="2_gf7eu"]
+[ext_resource type="Script" uid="uid://c3n16vg2rse2h" path="res://pages/setup/setup_page.gd" id="2_uk2y8"]
+
+[node name="SetupPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mq4wa")
+script = ExtResource("2_uk2y8")
+title = "Setup"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Setup"
+label_settings = ExtResource("2_gf7eu")
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SecondaryText"
+text = "Follow these steps to start collecting and processing data"
+
+[node name="StepContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16

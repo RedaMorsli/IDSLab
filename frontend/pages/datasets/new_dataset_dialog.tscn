@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpipmt6bj8vgb"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_ivjdo"]
+[ext_resource type="Script" uid="uid://dhjmjsplgvim8" path="res://pages/datasets/new_dataset_dialog.gd" id="2_qry74"]
+
+[node name="NewDatasetDialog" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_ivjdo")
+theme_override_constants/separation = 16
+script = ExtResource("2_qry74")
+
+[node name="NameLineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+placeholder_text = "Dataset name"
+
+[node name="CreateButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+disabled = true
+text = "Create"
+
+[connection signal="text_changed" from="NameLineEdit" to="." method="_on_name_line_edit_text_changed"]
+[connection signal="text_submitted" from="NameLineEdit" to="." method="_on_name_line_edit_text_submitted"]
+[connection signal="pressed" from="CreateButton" to="." method="_on_create_button_pressed"]

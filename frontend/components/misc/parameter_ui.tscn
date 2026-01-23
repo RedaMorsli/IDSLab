@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp6vgmb2miiwp"]
+
+[ext_resource type="Script" uid="uid://dm2mw743ps4tn" path="res://components/misc/parameter_ui.gd" id="1_e8hdv"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://components/text/text_body.tres" id="2_1dvs6"]
+
+[node name="ParameterUI" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_e8hdv")
+
+[node name="ParamName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Parameter"
+label_settings = ExtResource("2_1dvs6")
+
+[node name="NumberValue" type="SpinBox" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+allow_greater = true
+allow_lesser = true
+alignment = 1
+
+[node name="BoolValue" type="CheckBox" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="value_changed" from="NumberValue" to="." method="_value_changed"]
+[connection signal="toggled" from="BoolValue" to="." method="_value_changed"]

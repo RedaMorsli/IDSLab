@@ -1,0 +1,128 @@
+[gd_scene load_steps=8 format=3 uid="uid://sv3wyahxbp23"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://ui/themes/main_light_theme.tres" id="1_06vcr"]
+[ext_resource type="Script" uid="uid://brosg1i7mpplq" path="res://ui/pages/clusters/clusters_page.gd" id="2_qoitn"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://ui/text/text_body_sm.tres" id="4_06vcr"]
+[ext_resource type="PackedScene" uid="uid://bf2gegiiu5wai" path="res://ui/pages/clusters/cluster_row.tscn" id="5_cf65q"]
+[ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="7_06vcr"]
+[ext_resource type="LabelSettings" uid="uid://wyldnxevo8dl" path="res://ui/text/text_button.tres" id="7_kml0k"]
+[ext_resource type="LabelSettings" uid="uid://dmwmdyx6xbh7o" path="res://ui/text/text_body.tres" id="8_06vcr"]
+
+[node name="ClustersPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_06vcr")
+script = ExtResource("2_qoitn")
+ClusterRowScene = ExtResource("5_cf65q")
+title = "Clusters"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "View all your running clusters."
+label_settings = ExtResource("4_06vcr")
+
+[node name="AddClusterButton" type="Button" parent="VBox/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_hover_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/icon_normal_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_outline_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_focus_color = Color(0.121569, 0.160784, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.121569, 0.160784, 0.215686, 1)
+text = "Add cluster"
+icon = ExtResource("7_06vcr")
+flat = true
+
+[node name="ClusterTable" type="VBoxContainer" parent="VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="VBox/ClusterTable"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HeaderSelect" type="CheckBox" parent="VBox/ClusterTable/Header"]
+modulate = Color(0.392157, 0.454902, 0.545098, 1)
+layout_mode = 2
+
+[node name="StatusHeader" type="Label" parent="VBox/ClusterTable/Header"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Status"
+label_settings = ExtResource("7_kml0k")
+
+[node name="NameHeader" type="Label" parent="VBox/ClusterTable/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+label_settings = ExtResource("7_kml0k")
+
+[node name="NodesHeader" type="Label" parent="VBox/ClusterTable/Header"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Nodes"
+label_settings = ExtResource("7_kml0k")
+
+[node name="ActionsHeader" type="Label" parent="VBox/ClusterTable/Header"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Actions"
+label_settings = ExtResource("7_kml0k")
+
+[node name="HSeparator" type="HSeparator" parent="VBox/ClusterTable"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox/ClusterTable"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ClusterContainer" type="VBoxContainer" parent="VBox/ClusterTable/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HSeparator2" type="HSeparator" parent="VBox/ClusterTable"]
+layout_mode = 2
+
+[node name="EmptyMessage" type="Label" parent="VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "No cluster available."
+label_settings = ExtResource("8_06vcr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBox/HBoxContainer/AddClusterButton" to="." method="_on_add_cluster_button_pressed"]
+[connection signal="ready" from="VBox/ClusterTable" to="VBox/ClusterTable" method="hide"]
+[connection signal="ready" from="VBox/EmptyMessage" to="VBox/EmptyMessage" method="hide"]

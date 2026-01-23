@@ -1,0 +1,164 @@
+# Kubernetes manifest to run Fluent Bit without Helm
+# - Secret: fluent-bit-aws-secret (AWS credentials)
+# - ConfigMap: fluent-bit-config (fluent-bit.conf, inputs, filters, outputs)
+# - DaemonSet: fluent-bit (runs Fluent Bit on all nodes)
+#
+# Customize by editing the env values in the DaemonSet or the Secret.
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "__COLLECTOR_NAME_-flb-s3-secret"
+  labels:
+    app: "__COLLECTOR_NAME_-flb"
+    event-collector-id: "__COLLECTOR_ID__"
+type: Opaque
+stringData:
+  AWS_ACCESS_KEY_ID: "minioadmin"                # change or replace with kubectl apply -f - after editing
+  AWS_SECRET_ACCESS_KEY: "minioadmin"       # replace with real value or use external secret management
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "__COLLECTOR_NAME_-flb-config"
+  labels:
+    app: "__COLLECTOR_NAME_-flb"
+    event-collector-id: "__COLLECTOR_ID__"
+data:
+  # main configuration that includes component files below
+  fluent-bit.conf: |
+    [SERVICE]
+        Flush        5
+        Daemon       Off
+        Log_Level    info
+        Parsers_File parsers.conf
+
+    @INCLUDE input.conf
+    @INCLUDE filter.conf
+    @INCLUDE output.conf
+
+  # inputs (copied from helm values)
+  input.conf: |
+    [INPUT]
+        name http
+        listen 0.0.0.0
+        port 8888
+        tag events
+
+    [INPUT]
+        name http
+        listen 0.0.0.0
+        port 8889
+        tag metrics
+
+  filter.conf: |
+
+  # outputs: use environment variable expansion so these values are configurable
+  output.conf: |
+    [OUTPUT]
+        Name     s3
+        Match    *
+        bucket   __BUCKET__
+        total_file_size 100M
+        upload_timeout 1m
+        endpoint http://minio.storage.svc.cluster.local:9000
+        s3_key_format  /events/events_$UUID.jsonl
+        match events
+
+    [OUTPUT]
+        Name     s3
+        Match    *
+        bucket   __BUCKET__
+        total_file_size 100M
+        upload_timeout 1m
+        endpoint http://minio.storage.svc.cluster.local:9000
+        s3_key_format  /metrics/metrics_$UUID.jsonl
+        match metrics
+
+  parsers.conf: |
+    # Add parsers here if needed
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "__COLLECTOR_NAME_-flb"
+  labels:
+    app: "__COLLECTOR_NAME_-flb"
+    event-collector-id: "__COLLECTOR_ID__"
+spec:
+  repli cas: 1
+  selector:
+    matchLabels:
+      app: "__COLLECTOR_NAME_-flb"
+      event-collector-id: "__COLLECTOR_ID__"
+  template:
+    metadata:
+      labels:
+        app: "__COLLECTOR_NAME_-flb"
+        event-collector-id: "__COLLECTOR_ID__"
+    spec:
+      # ServiceAccount can be added here if you rely on IRSA/IAM roles
+      containers:
+        - name: fluent-bit
+          image: cr.fluentbit.io/fluent/fluent-bit:4.1.0
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-c"
+            - "/fluent-bit/etc/fluent-bit.conf"
+          ports:
+            - containerPort: 8888
+              name: events
+              protocol: TCP
+            - containerPort: 8889
+              name: metrics
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: "__COLLECTOR_NAME_-flb-s3-secret"
+          volumeMounts:
+            - name: fluent-bit-config-volume
+              mountPath: /fluent-bit/etc/
+      volumes:
+        - name: fluent-bit-config-volume
+          configMap:
+            name: "__COLLECTOR_NAME_-flb-config"
+            items:
+              - key: fluent-bit.conf
+                path: fluent-bit.conf
+              - key: input.conf
+                path: input.conf
+              - key: filter.conf
+                path: filter.conf
+              - key: output.conf
+                path: output.conf
+              - key: parsers.conf
+                path: parsers.conf
+
+# End of manifest
+
+---
+# ClusterIP Service to expose Fluent Bit HTTP input for Tracee (or other consumers)
+apiVersion: v1
+kind: Service
+metadata:
+  name: "__COLLECTOR_NAME_-flb-service"
+  labels:
+    app: "__COLLECTOR_NAME_-flb"
+    event-collector-id: "__COLLECTOR_ID__"
+spec:
+  type: ClusterIP
+  selector:
+    app: "__COLLECTOR_NAME_-flb"
+    event-collector-id: "__COLLECTOR_ID__"
+  ports:
+    - name: events
+      port: 8888
+      targetPort: 8888
+      protocol: TCP
+    - name: metrics
+      port: 8889
+      targetPort: 8889
+      protocol: TCP

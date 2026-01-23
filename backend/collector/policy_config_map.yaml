@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: _TRACEE_POLICY_NAME_
+  # namespace: idslab
+data:
+  policy.yml: |
+    apiVersion: tracee.aquasec.com/v1beta1
+    kind: Policy
+    metadata:
+        name: _TRACEE_POLICY_NAME_
+        annotations:
+            description: This policy was generated using DYNAMO
+    spec:
+        scope:
+          - comm!=tracee
+          - comm!=flb-pipeline
+          - comm!=k3s-server
+          - comm!=flb-out-s3.0-w0
+        rules:
+          - event: net_packet_http

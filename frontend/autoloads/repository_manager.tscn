@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bractl5hpf4dv"]
+
+[ext_resource type="Script" uid="uid://bvlfrgc87ffjr" path="res://autoloads/repository_manager.gd" id="1_fu241"]
+
+[node name="RepositoryManager" type="Node"]
+script = ExtResource("1_fu241")

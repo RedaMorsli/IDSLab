@@ -1,0 +1,332 @@
+[gd_scene load_steps=31 format=3 uid="uid://dojg677etj6vr"]
+
+[ext_resource type="Script" uid="uid://t3eho5yur5lf" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="FontFile" uid="uid://1bx80f2g2hnt" path="res://assets/fonts/Inter_18pt-Bold.ttf" id="2_1bvp3"]
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="2_lquwl"]
+[ext_resource type="Theme" uid="uid://lm61ax68spj1" path="res://assets/themes/sidebar_light_theme.tres" id="3_272bh"]
+[ext_resource type="Script" uid="uid://ciaorlcoo02wu" path="res://components/nav/nav_bar.gd" id="4_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://b6kaagq0gn0py" path="res://assets/icons/logo.png" id="4_kek77"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="7_cegan"]
+[ext_resource type="ButtonGroup" uid="uid://dmovb3lybdkx3" path="res://components/buttons/nav_button_group.tres" id="7_efxa6"]
+[ext_resource type="Texture2D" uid="uid://dtqyqc5nib5ec" path="res://assets/icons/plugs.png" id="7_ryguw"]
+[ext_resource type="Texture2D" uid="uid://chrbg5pmc3lbm" path="res://assets/icons/graph.png" id="8_efxa6"]
+[ext_resource type="Texture2D" uid="uid://bce4vk6qkgh2f" path="res://assets/icons/list-checks-bold.png" id="9_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://cmlpkbqyoeajc" path="res://assets/icons/database.png" id="9_efxa6"]
+[ext_resource type="PackedScene" uid="uid://br58rkxhuijne" path="res://pages/clusters/clusters_page_manager.tscn" id="10_4c57u"]
+[ext_resource type="Texture2D" uid="uid://os00vhjcsjtl" path="res://assets/icons/cube.png" id="10_dg77c"]
+[ext_resource type="Texture2D" uid="uid://bohe3v8u4l6as" path="res://assets/icons/cube-focus.png" id="10_vivmo"]
+[ext_resource type="Texture2D" uid="uid://d4efoseu30qrm" path="res://assets/icons/brain.png" id="10_ycdy4"]
+[ext_resource type="Script" uid="uid://ck2kjqu0fryn0" path="res://components/nav/nav_button.gd" id="11_074og"]
+[ext_resource type="PackedScene" uid="uid://bxax7o8u3gtq7" path="res://pages/setup/setup_page_manager.tscn" id="11_xuqvo"]
+[ext_resource type="PackedScene" uid="uid://bk22rwx5redge" path="res://pages/apps/app_page_manager.tscn" id="12_cegan"]
+[ext_resource type="Texture2D" uid="uid://b0q5xf63mt2yo" path="res://assets/icons/rocket-launch.png" id="12_w48qg"]
+[ext_resource type="Texture2D" uid="uid://xjufy4yvwsjr" path="res://assets/icons/codesandbox-logo.png" id="13_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://6fvs430u08nk" path="res://assets/icons/chart-line.png" id="13_82xsv"]
+[ext_resource type="PackedScene" uid="uid://cf3sqhqyvqaqp" path="res://pages/metrics/metrics_page_manager.tscn" id="14_getpj"]
+[ext_resource type="PackedScene" uid="uid://cwsvofvwqr0if" path="res://pages/attacks/attacks_page_manager.tscn" id="15_cegan"]
+[ext_resource type="PackedScene" uid="uid://cbcgihhfu027h" path="res://pages/datasets/datasets_page_manager.tscn" id="20_d13ii"]
+[ext_resource type="PackedScene" uid="uid://buujx7ivt6u27" path="res://pages/events/event_collectors_page_manager.tscn" id="20_lswn8"]
+[ext_resource type="Texture2D" uid="uid://64bk5iiqu32i" path="res://assets/icons/funnel.png" id="21_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://bbuptqu38p2bb" path="res://pages/events/events_filters_page_manager.tscn" id="22_0odxb"]
+
+[sub_resource type="FontVariation" id="FontVariation_272bh"]
+base_font = ExtResource("2_1bvp3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+draw_center = false
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_ig7tw")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lquwl")
+
+[node name="Panel" type="PanelContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_272bh")
+
+[node name="NavBar" type="Control" parent="HBox/Panel" node_paths=PackedStringArray("destination_container", "nav_items")]
+layout_mode = 2
+script = ExtResource("4_2cqfq")
+destination_container = NodePath("../../MainContainer")
+nav_items = [NodePath("Margin/VBox/ScrollContainer/Navigation/ClusterSection/NavClusters"), NodePath("Margin/VBox/ScrollContainer/Navigation/ClusterSection/NavMetrics"), NodePath("Margin/VBox/ScrollContainer/Navigation/ClusterSection/NavApps"), NodePath("Margin/VBox/ScrollContainer/Navigation/ClusterSection/NavAttacks"), NodePath("Margin/VBox/ScrollContainer/Navigation/DatasetSection/NavDatasets"), NodePath("Margin/VBox/ScrollContainer/Navigation/DatasetSection/NavCollectors"), NodePath("Margin/VBox/ScrollContainer/Navigation/DatasetSection/NavFilters"), NodePath("Margin/VBox/ScrollContainer/Navigation/NavSetup")]
+
+[node name="Margin" type="MarginContainer" parent="HBox/Panel/NavBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="HBox/Panel/NavBar/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/Panel/NavBar/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="HBox/Panel/NavBar/Margin/VBox/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture = ExtResource("4_kek77")
+expand_mode = 3
+
+[node name="Title" type="Label" parent="HBox/Panel/NavBar/Margin/VBox/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_272bh")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_kek77")
+text = "IDSLab"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="MarginContainer" parent="HBox/Panel/NavBar/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/Panel/NavBar/Margin/VBox/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Panel/NavBar/Margin/VBox/HBoxContainer2/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+layout_mode = 2
+texture = ExtResource("7_ryguw")
+
+[node name="ServerUrlLabel" type="RichTextLabel" parent="HBox/Panel/NavBar/Margin/VBox/HBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.121569, 0.160784, 0.215686, 1)
+text = "server_url"
+
+[node name="DisconnectButton" type="RichTextLabel" parent="HBox/Panel/NavBar/Margin/VBox/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/default_color = Color(0.937255, 0.266667, 0.266667, 1)
+bbcode_enabled = true
+text = "[url]Disconnect[/url]"
+horizontal_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBox/Panel/NavBar/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Navigation" type="VBoxContainer" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+
+[node name="NavSetup" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("7_efxa6")
+text = "Setup"
+icon = ExtResource("9_a6jrf")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "setup"
+nav_scene = ExtResource("11_xuqvo")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+metadata/nav_name = "apps"
+metadata/nav_scene = ExtResource("12_cegan")
+
+[node name="ClusterSection" type="VBoxContainer" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/ClusterSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Environnement"
+label_settings = ExtResource("7_cegan")
+
+[node name="NavClusters" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/ClusterSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Clusters"
+icon = ExtResource("8_efxa6")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "clusters"
+nav_scene = ExtResource("10_4c57u")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+metadata/nav_name = "apps"
+metadata/nav_scene = ExtResource("12_cegan")
+
+[node name="NavMetrics" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/ClusterSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Metrics"
+icon = ExtResource("13_82xsv")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "metrics"
+nav_scene = ExtResource("14_getpj")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="NavApps" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/ClusterSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Applications"
+icon = ExtResource("10_dg77c")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "apps"
+nav_scene = ExtResource("12_cegan")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+metadata/nav_name = "apps"
+metadata/nav_scene = ExtResource("12_cegan")
+
+[node name="NavAttacks" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/ClusterSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Attacks"
+icon = ExtResource("10_vivmo")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "attacks"
+nav_scene = ExtResource("15_cegan")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="DatasetSection" type="VBoxContainer" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Data"
+label_settings = ExtResource("7_cegan")
+
+[node name="NavDatasets" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Datasets"
+icon = ExtResource("9_efxa6")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "datasets"
+nav_scene = ExtResource("20_d13ii")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="NavFilters" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Filters"
+icon = ExtResource("21_1u8w0")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "event_filters"
+nav_scene = ExtResource("22_0odxb")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="NavCollectors" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Collectors"
+icon = ExtResource("9_efxa6")
+alignment = 0
+expand_icon = true
+script = ExtResource("11_074og")
+nav_name = "event_collectors"
+nav_scene = ExtResource("20_lswn8")
+metadata/_custom_type_script = "uid://ck2kjqu0fryn0"
+
+[node name="DatasetSection2" type="VBoxContainer" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AI"
+label_settings = ExtResource("7_cegan")
+
+[node name="Button4" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Training"
+icon = ExtResource("10_ycdy4")
+alignment = 0
+expand_icon = true
+
+[node name="Button5" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Models"
+icon = ExtResource("13_2cqfq")
+alignment = 0
+expand_icon = true
+
+[node name="Button6" type="Button" parent="HBox/Panel/NavBar/Margin/VBox/ScrollContainer/Navigation/DatasetSection2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+toggle_mode = true
+button_group = ExtResource("7_efxa6")
+text = "Deployments"
+icon = ExtResource("12_w48qg")
+alignment = 0
+expand_icon = true
+
+[node name="Version" type="Label" parent="HBox/Panel/NavBar/Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "v0.0.0"
+label_settings = ExtResource("7_cegan")
+horizontal_alignment = 1
+
+[node name="MainContainer" type="Control" parent="HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[connection signal="meta_clicked" from="HBox/Panel/NavBar/Margin/VBox/HBoxContainer2/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_meta_clicked"]

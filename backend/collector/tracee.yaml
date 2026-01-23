@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "collector__COLLECTOR_ID__-tracee"
+  labels:
+    event-collector-id: "__COLLECTOR_ID__"
+  # namespace: idslab
+spec:
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet
+  hostPID: true
+  # Note: Kubernetes doesn’t expose cgroupns=host as a field. With a privileged container,
+  # runtimes typically use the host cgroup namespace; there’s no separate knob to set here.
+  restartPolicy: Never
+  containers:
+    - name: tracee
+      image: aquasec/tracee:latest   # <-- change to your pushed image if needed
+      imagePullPolicy: Always
+      securityContext:
+        privileged: true
+      env:
+        - name: LIBBPFGO_OSRELEASE_FILE
+          value: /etc/os-release-host
+      # Default command to run the detection engine (override if you prefer tracee-ebpf)
+      command: ["./tracee"]
+      args:
+        # Example: JSON output + load rules from /policies (if your image COPY'ed them there)
+        - "--output"
+        - "table"
+        - "--policy"
+        - "/policies/policy.yml"
+        # - "--containers"
+        # - "containerd:/run/k3s/containerd/containerd.sock"
+        - "--output"
+        - "webhook:http://__FLUENT_ADDRESS__:__FLUENT_PORT__"
+      volumeMounts:
+        - name: os-release
+          mountPath: /etc/os-release-host
+          readOnly: true
+        - name: sys-kernel-debug
+          mountPath: /sys/kernel/debug
+          readOnly: false
+        - name: sys-kernel-tracing
+          mountPath: /sys/kernel/tracing
+          readOnly: false
+        - name: lib-modules
+          mountPath: /lib/modules
+          readOnly: true
+        - name: usr-src
+          mountPath: /usr/src
+          readOnly: true
+        - name: boot
+          mountPath: /boot
+          readOnly: true
+        - name: etc-localtime
+          mountPath: /etc/localtime
+          readOnly: true
+        - name: containerd-sock
+          mountPath: /run/k3s/containerd
+          readOnly: true
+        - name: policy
+          mountPath: /policies
+          readOnly: true
+  volumes:
+    - name: os-release
+      hostPath:
+        path: /etc/os-release
+        type: File
+    - name: sys-kernel-debug
+      hostPath:
+        path: /sys/kernel/debug
+        type: Directory
+    - name: sys-kernel-tracing
+      hostPath:
+        path: /sys/kernel/tracing
+        type: Directory
+    - name: lib-modules
+      hostPath:
+        path: /lib/modules
+        type: Directory
+    - name: usr-src
+      hostPath:
+        path: /usr/src
+        type: Directory
+    - name: boot
+      hostPath:
+        path: /boot
+        type: Directory
+    - name: etc-localtime
+      hostPath:
+        path: /etc/localtime
+        type: File
+    - name: containerd-sock
+      hostPath:
+        path: /run/k3s/containerd
+        type: Directory
+    - name: policy
+      configMap:
+        name: _TRACEE_POLICY_NAME_

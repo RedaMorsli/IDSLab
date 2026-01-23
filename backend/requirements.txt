@@ -1,0 +1,6 @@
+websockets
+duckdb
+kubernetes
+aioboto3
+minio
+pandas

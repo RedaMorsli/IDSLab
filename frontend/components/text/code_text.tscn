@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://deo5t4os3v61o"]
+
+[ext_resource type="Theme" uid="uid://bttsfyln42f17" path="res://assets/themes/label_theme.tres" id="1_ibsuv"]
+
+[node name="CodeText" type="Label"]
+offset_right = 40.0
+offset_bottom = 20.0
+theme = ExtResource("1_ibsuv")
+text = "label"

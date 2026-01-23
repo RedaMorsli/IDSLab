@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1q2e47g20k7l"]
+
+[ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_8pn77"]
+[ext_resource type="Script" uid="uid://bbe828ge2u8sr" path="res://pages/apps/add_web_app_page.gd" id="2_lrwg6"]
+[ext_resource type="Texture2D" uid="uid://bv68qi805ilo8" path="res://assets/icons/caret-left.png" id="5_p1e4w"]
+[ext_resource type="LabelSettings" uid="uid://df86bg8r1iemg" path="res://components/text/text_heading_lg.tres" id="6_q4fwd"]
+[ext_resource type="LabelSettings" uid="uid://csgrfgyah2so1" path="res://components/text/text_body_sm.tres" id="7_samfj"]
+[ext_resource type="PackedScene" uid="uid://dsdiv1v1iflbs" path="res://components/buttons/primary_button.tscn" id="9_md6h2"]
+
+[node name="AddWebAppPage" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8pn77")
+script = ExtResource("2_lrwg6")
+title = "Add web app"
+metadata/_custom_type_script = "uid://cgkvk1s8c11eg"
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="Center/VBox/HBoxContainer"]
+modulate = Color(0.121569, 0.160784, 0.215686, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_p1e4w")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Center/VBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add a web application"
+label_settings = ExtResource("6_q4fwd")
+horizontal_alignment = 1
+
+[node name="Name" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Center/VBox/Name"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Application name"
+label_settings = ExtResource("7_samfj")
+
+[node name="AppNameEdit" type="LineEdit" parent="Center/VBox/Name"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g. MyApplication"
+
+[node name="Address" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Address"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Address"
+label_settings = ExtResource("7_samfj")
+
+[node name="AddressEdit" type="LineEdit" parent="Center/VBox/Address"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g., localhost, 192.168.0.1"
+
+[node name="Port" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/VBox/Port"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Port"
+label_settings = ExtResource("7_samfj")
+
+[node name="PortEdit" type="SpinBox" parent="Center/VBox/Port"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 65535.0
+value = 80.0
+rounded = true
+alignment = 1
+
+[node name="AddAppButton" parent="Center/VBox" instance=ExtResource("9_md6h2")]
+layout_mode = 2
+text = "Add"
+
+[connection signal="button_up" from="Center/VBox/HBoxContainer/BackButton" to="." method="emit_signal" binds= ["request_pop_back"]]
+[connection signal="pressed" from="Center/VBox/AddAppButton" to="." method="_on_add_app_button_pressed"]
