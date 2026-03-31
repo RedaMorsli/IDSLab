@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WebAttackConfig" load_steps=5 format=3 uid="uid://bcs7hng5a580r"]
+[gd_resource type="Resource" script_class="WebAttackConfig" format=3 uid="uid://bcs7hng5a580r"]
 
 [ext_resource type="Texture2D" uid="uid://bw75ggt0emku2" path="res://assets/icons/file-py.png" id="1_grjw0"]
 [ext_resource type="Script" uid="uid://bua6w7mqvlmr0" path="res://pages/attacks/web_attack_config.gd" id="1_tykio"]

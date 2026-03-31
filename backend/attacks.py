@@ -1,4 +1,5 @@
 import sys
+import os
 import asyncio
 from server import send_progress
 
@@ -9,7 +10,7 @@ async def dos_slowloris(args={}):
         target_port = args['target_port']
         timeout = args['timeout']
         sockets = args['sockets']
-        cmd = [sys.executable, "-u", r"scripts\slowloris.py", target_address]
+        cmd = [sys.executable, "-u", os.path.join(os.path.dirname(__file__), "scripts", "slowloris.py"), target_address]
         if target_port:
             cmd.append("-p")
             cmd.append(str(target_port))

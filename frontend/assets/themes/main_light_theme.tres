@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=42 format=3 uid="uid://dayep1f5ngpn"]
+[gd_resource type="Theme" format=3 uid="uid://dayep1f5ngpn"]
 
 [ext_resource type="Texture2D" uid="uid://cmch012m502ru" path="res://assets/icons/check-square.png" id="1_bah7y"]
 [ext_resource type="Texture2D" uid="uid://bcjt1x8x432gs" path="res://assets/icons/square.png" id="2_1i1l0"]

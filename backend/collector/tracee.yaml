@@ -92,7 +92,8 @@ spec:
         type: File
     - name: containerd-sock
       hostPath:
-        path: /run/k3s/containerd
+        # path: /run/k3s/containerd
+        path: /run/containerd
         type: Directory
     - name: policy
       configMap:

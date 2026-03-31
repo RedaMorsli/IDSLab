@@ -63,7 +63,8 @@ data:
         bucket   __BUCKET__
         total_file_size 100M
         upload_timeout 1m
-        endpoint http://minio.storage.svc.cluster.local:9000
+        # endpoint http://minio.storage.svc.cluster.local:9000
+        endpoint http://host.docker.internal:9000
         s3_key_format  /events/events_$UUID.jsonl
         match events
 
@@ -73,7 +74,8 @@ data:
         bucket   __BUCKET__
         total_file_size 100M
         upload_timeout 1m
-        endpoint http://minio.storage.svc.cluster.local:9000
+        # endpoint http://minio.storage.svc.cluster.local:9000
+        endpoint http://host.docker.internal:9000
         s3_key_format  /metrics/metrics_$UUID.jsonl
         match metrics
 

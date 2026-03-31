@@ -93,6 +93,7 @@ func _handle_packet(packet: PackedByteArray):
 					callback.call(data)
 					_pending_responses.erase(request_id)
 					print("[Server] Request ", request_id, " answered")
+				request_completed.emit(request_id, status)
 			'progress':
 				if request_id != null and request_id in _pending_responses:
 					var callback = _pending_responses[request_id]['progress_callback']
@@ -102,7 +103,7 @@ func _handle_packet(packet: PackedByteArray):
 					var callback = _pending_responses[request_id]['finish_callback']
 					callback.call(data)
 				print('Error request ' + str(request_id) + ": " + data['message'])
-		request_completed.emit(request_id, status)
+				request_completed.emit(request_id, status)
 	else:
 		print("[Server] Received non string reponse")
 

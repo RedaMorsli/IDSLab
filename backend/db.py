@@ -1,7 +1,7 @@
 import duckdb
 import os
 
-DB_PATH = "index.db"
+DB_PATH = os.path.join(os.environ.get("DB_DIR", "."), "index.db")
 
 def init_database(db_path=DB_PATH):
     execute("""
