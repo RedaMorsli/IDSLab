@@ -5,6 +5,7 @@ import pandas as pd
 from pandas import DataFrame
 import base64
 import json
+import os
 
 
 async def create_dataset(args={}) -> str:
@@ -39,6 +40,7 @@ async def execute_dataset_graph(args={}):
     output.info()
     file_name = dataset_name + ".csv"
     file_path = f"./csv/{file_name}"
+    os.makedirs("./csv", exist_ok=True)
     output.to_csv(file_path, index=False)
     return {'file_name': file_name}
     

@@ -12,7 +12,7 @@ spec:
   #   ghcr.io/<your-org>/prom-scraper:latest
   containers:
     - name: prom-scraper
-      image: 192.168.56.20:5000/prom-scraper:latest
+      image: redmors/idslab-prom-collector:latest
       imagePullPolicy: Always
       env:
         - name: PROMETHEUS_URL

@@ -42,8 +42,29 @@ class FeatureExtractionNode(GraphNode):
         return result
 
 
+
+LABELING_OPERATORS = {
+    '=':  lambda col, val: col == val,
+    '!=': lambda col, val: col != val,
+}
+
+
+class LabelingNode(GraphNode):
+    async def get_output_data(self, input_data: list, output_port: int):
+        df: DataFrame = input_data[0].copy()
+        column = self.params['column']
+        operator = self.params['operator']
+        value = self.params['value']
+        label = self.params['label']
+
+        op_fn = LABELING_OPERATORS[operator]
+        df.loc[op_fn(df[column], value), 'label'] = label
+        return df
+
+
 classes = {
     'dataset_file_input_node': InputNode,
     'dataset_output_node': OutputNode,
     'dataset_feature_extraction_node': FeatureExtractionNode,
+    'dataset_labeling_node': LabelingNode,
 }
