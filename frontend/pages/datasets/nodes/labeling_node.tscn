@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dynijy6xvyvdy"]
+[gd_scene format=3 uid="uid://dynijy6xvyvdy"]
 
 [ext_resource type="Theme" uid="uid://dayep1f5ngpn" path="res://assets/themes/main_light_theme.tres" id="1_doeqj"]
 [ext_resource type="Script" uid="uid://mbl2x07aksi1" path="res://pages/datasets/nodes/labeling_node.gd" id="1_xnlic"]
 [ext_resource type="Texture2D" uid="uid://diupyho4s1mn5" path="res://assets/icons/plus.png" id="3_0p4ye"]
 [ext_resource type="PackedScene" uid="uid://cjwsww4emcedu" path="res://pages/datasets/nodes/label_item.tscn" id="3_qt3lv"]
 
-[node name="LabelingNode" type="GraphNode"]
+[node name="LabelingNode" type="GraphNode" unique_id=484617895]
 offset_right = 9.0
 offset_bottom = 52.0
 theme = ExtResource("1_doeqj")
+resizable = true
 title = "Labeling"
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -22,19 +23,19 @@ slot/0/draw_stylebox = true
 script = ExtResource("1_xnlic")
 node_name = "dataset_labeling_node"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1051421960]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LabelsContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="LabelsContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1285941017]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LabelItem" parent="VBoxContainer/LabelsContainer" instance=ExtResource("3_qt3lv")]
+[node name="LabelItem" parent="VBoxContainer/LabelsContainer" unique_id=1955565829 instance=ExtResource("3_qt3lv")]
 layout_mode = 2
 
-[node name="AddLabelButton" type="Button" parent="VBoxContainer"]
+[node name="AddLabelButton" type="Button" parent="VBoxContainer" unique_id=648649401]
 layout_mode = 2
 focus_mode = 0
 text = "Add Label"

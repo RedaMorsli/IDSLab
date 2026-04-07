@@ -56,7 +56,8 @@ spec:
           mountPath: /etc/localtime
           readOnly: true
         - name: containerd-sock
-          mountPath: /run/k3s/containerd
+          # mountPath: /run/k3s/containerd
+          mountPath: /run/containerd
           readOnly: true
         - name: policy
           mountPath: /policies

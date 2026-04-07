@@ -128,6 +128,8 @@ def _apply_tracee_policy_configmap(
         return [clean_item(str(value))]
 
     scope_expressions = _parse_field(raw_scope)
+    if "container" not in scope_expressions:
+        scope_expressions.append("container")
     events = _parse_field(raw_events)
 
     configmap_name = "collector" + collector_id + "-tracee-policy"
