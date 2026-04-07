@@ -52,13 +52,11 @@ LABELING_OPERATORS = {
 class LabelingNode(GraphNode):
     async def get_output_data(self, input_data: list, output_port: int):
         df: DataFrame = input_data[0].copy()
-        column = self.params['column']
-        operator = self.params['operator']
-        value = self.params['value']
-        label = self.params['label']
 
-        op_fn = LABELING_OPERATORS[operator]
-        df.loc[op_fn(df[column], value), 'label'] = label
+        for entry in self.params['labels']:
+            op_fn = LABELING_OPERATORS[entry['operator']]
+            df.loc[op_fn(df[entry['column']], entry['value']), 'label'] = entry['label']
+
         return df
 
 

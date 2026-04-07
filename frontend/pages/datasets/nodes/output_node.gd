@@ -30,9 +30,16 @@ func _on_file_label_meta_clicked(meta: Variant) -> void:
 
 
 func _on_downloaded_file_ready(file_name, bytes):
-	file_dialog.current_file = file_name
-	file_dialog.popup()
-	_bytes = bytes
+	if OS.has_feature('web'):
+		# FileDialog cannot write to the user's local filesystem in a web build.
+		# Use a hidden <input>-based download via JavaScriptBridge instead.
+		print("web download")
+		WebFileUtils.download_file(file_name, bytes)
+	else:
+		print("no web download")
+		file_dialog.current_file = file_name
+		file_dialog.popup()
+		_bytes = bytes
 
 
 func _on_file_path_selected(path):
